@@ -16,7 +16,11 @@
  */
 package de.aikiit.jmockex;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
+
+import com.google.common.base.Charsets;
 
 /**
  * This class is just an example, no real useful implementation.
@@ -38,16 +42,21 @@ public class ASimpleParser {
 		this.contents = new StringBuilder();
 	}
 	
-	public ASimpleParser read() {
-		return this;
+	public String getContents() {
+		return contents.toString();
 	}
 
 	public ASimpleParser write(String input) {
+		contents.append(input);
 		return this;
 	}
 	
 	public ASimpleParser append(String input) {
 		return this;
+	}
+
+	public void flush() throws IOException {
+		Files.write(path, contents.toString().getBytes(Charsets.UTF_8));
 	}
 
 }

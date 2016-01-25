@@ -16,8 +16,12 @@
  */
 package de.aikiit.jmockex;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertNotNull;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -25,6 +29,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -32,7 +37,11 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
+import com.google.common.base.Charsets;
+
 public class ASimpleParserTest {
+
+	private static String CONTENTS = "This is a test with German umlauts or not, äöüß!";
 
 	// HINT: needs to be public
 	@Rule
@@ -45,18 +54,30 @@ public class ASimpleParserTest {
 	}
 
 	@Test(expected = IllegalArgumentException.class)
-	public final void testASimpleParser() {
+	public final void nullArguments() {
 		assertNotNull(new ASimpleParser(null));
 	}
 
 	@Test
-	public final void testWithArguments() {
-		// assertNull(new ASimpleParser(null).asFile());
+	public final void performWrite() throws IOException {
+		final File writeExample = testdata.newFile();
+
+		final ASimpleParser parser = new ASimpleParser(writeExample.toPath());
+		parser.write(CONTENTS).flush();
+		final String readFromFile = parser.getContents();
+		assertThat(readFromFile, isA(String.class));
+		assertThat(readFromFile, equalTo(CONTENTS));
+		
+	}
+
+	public static List<String> read(Path path) throws IOException {
+		return Files.readAllLines(path, Charsets.UTF_8);
 	}
 
 	@After
 	public void makeSureToRemoveAllFiles() throws IOException {
-		// if there are open files in there @Rule does not delete them properly!
+		// if there are open files in there or an exception takes place @Rule
+		// does not delete folder properly!
 		if (testdata != null) {
 			Files.walkFileTree(Paths.get(testdata.getRoot().toURI()), new SimpleFileVisitor<Path>() {
 				@Override
@@ -75,7 +96,6 @@ public class ASimpleParserTest {
 		} else {
 			System.out.println("Already deleted by JUnit-RULE.");
 		}
-
 	}
 
 }
