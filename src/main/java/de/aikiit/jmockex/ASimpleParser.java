@@ -16,7 +16,6 @@
  */
 package de.aikiit.jmockex;
 
-import java.io.File;
 import java.nio.file.Path;
 
 /**
@@ -28,14 +27,27 @@ import java.nio.file.Path;
 public class ASimpleParser {
 	
 	private final Path path;
+	private final StringBuilder contents;
 
 	public ASimpleParser(Path path) {
+		if(path == null) {
+			throw new IllegalArgumentException("No null arguments allowed.");
+		}
+		
 		this.path = path;
+		this.contents = new StringBuilder();
 	}
 	
-	public File asFile() {
-		return null;
+	public ASimpleParser read() {
+		return this;
+	}
+
+	public ASimpleParser write(String input) {
+		return this;
 	}
 	
+	public ASimpleParser append(String input) {
+		return this;
+	}
 
 }
