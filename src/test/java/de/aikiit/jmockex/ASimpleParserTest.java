@@ -18,10 +18,10 @@ package de.aikiit.jmockex;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.isA;
 import static org.junit.Assert.assertNotNull;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
@@ -29,11 +29,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.util.Arrays;
 import java.util.List;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.Rule;
+import org.junit.ClassRule;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
@@ -43,14 +45,16 @@ public class ASimpleParserTest {
 
 	private static String CONTENTS = "This is a test with German umlauts or not, äöüß!";
 
-	// HINT: needs to be public
-	@Rule
-	public TemporaryFolder testdata = new TemporaryFolder();
+	// HINT: needs to be public, @Rule if not static
+	@ClassRule
+	public static TemporaryFolder testdata = new TemporaryFolder();
 
 	@Before
-	public void showTestDataBaseDir() {
+	public void showTestDataBaseDir() throws IOException {
 		assertNotNull(testdata);
-		System.out.println("Base directory is " + testdata.getRoot());
+		System.out.println("Base directory is " + testdata.getRoot() + " containing "
+				+ Arrays.asList(testdata.getRoot().listFiles()));
+
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -60,25 +64,63 @@ public class ASimpleParserTest {
 
 	@Test
 	public final void performWrite() throws IOException {
-		final File writeExample = testdata.newFile();
 
-		final ASimpleParser parser = new ASimpleParser(writeExample.toPath());
+		final Path path = testdata.newFile().toPath();
+
+		final ASimpleParser parser = new ASimpleParser(path);
 		parser.write(CONTENTS).flush();
 		final String readFromFile = parser.getContents();
 		assertThat(readFromFile, isA(String.class));
 		assertThat(readFromFile, equalTo(CONTENTS));
-		
+		System.out.println(parser);
+		System.out.println(
+				"Base directory " + testdata.getRoot() + " contains " + Arrays.asList(testdata.getRoot().listFiles()));
+	}
+	
+	@Ignore("Not yet working")
+	public void intentionallyLeftBlank() {
+		throw new RuntimeException("You should be ignored!");
+	}
+
+	@Test
+	public void writeFluentlyAndReadContents() throws IOException {
+		final Path path = testdata.newFile().toPath();
+
+		final ASimpleParser parser = new ASimpleParser(path);
+
+		parser.append(CONTENTS).append(CONTENTS).append(CONTENTS).flush();
+		final List<String> flushedContents = read(path);
+		assertThat(flushedContents, hasItems(CONTENTS + CONTENTS + CONTENTS));
+		System.out.println(parser);
 	}
 
 	public static List<String> read(Path path) throws IOException {
 		return Files.readAllLines(path, Charsets.UTF_8);
 	}
 
-	@After
-	public void makeSureToRemoveAllFiles() throws IOException {
+	@Test
+	public final void performWriteAfterAppend() throws IOException {
+
+		final Path path = testdata.newFile().toPath();
+
+		final ASimpleParser parser = new ASimpleParser(path);
+		parser.append(CONTENTS).append(CONTENTS).write(CONTENTS).append(CONTENTS).write(CONTENTS).flush();
+		final String readFromFile = parser.getContents();
+		assertThat(readFromFile, isA(String.class));
+		assertThat(readFromFile, equalTo(CONTENTS));
+		System.out.println(parser);
+		System.out.println(
+				"Base directory " + testdata.getRoot() + " contains " + Arrays.asList(testdata.getRoot().listFiles()));
+
+	}
+
+	@AfterClass
+	public static void makeSureToRemoveAllFiles() throws IOException {
 		// if there are open files in there or an exception takes place @Rule
 		// does not delete folder properly!
 		if (testdata != null) {
+			System.out.println("Before deletion: " + Arrays.asList(testdata.getRoot().listFiles()));
+			// JDK8 compliant and symlink-safe
 			Files.walkFileTree(Paths.get(testdata.getRoot().toURI()), new SimpleFileVisitor<Path>() {
 				@Override
 				public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
@@ -92,7 +134,7 @@ public class ASimpleParserTest {
 					return FileVisitResult.CONTINUE;
 				}
 			});
-			System.out.println("Manually removed stuff in temporary folder.");
+			System.out.println("Did remove stuff in temporary folder");
 		} else {
 			System.out.println("Already deleted by JUnit-RULE.");
 		}

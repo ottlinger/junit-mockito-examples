@@ -31,7 +31,7 @@ import com.google.common.base.Charsets;
 public class ASimpleParser {
 	
 	private final Path path;
-	private final StringBuilder contents;
+	private StringBuilder contents;
 
 	public ASimpleParser(Path path) {
 		if(path == null) {
@@ -47,11 +47,12 @@ public class ASimpleParser {
 	}
 
 	public ASimpleParser write(String input) {
-		contents.append(input);
+		contents = new StringBuilder(input);
 		return this;
 	}
 	
 	public ASimpleParser append(String input) {
+		contents.append(input);
 		return this;
 	}
 
@@ -59,4 +60,14 @@ public class ASimpleParser {
 		Files.write(path, contents.toString().getBytes(Charsets.UTF_8));
 	}
 
+	@Override
+	public String toString() {
+		final StringBuilder builder = new StringBuilder();
+		builder.append("ASimpleParser [path=");
+		builder.append(path);
+		builder.append(", contents=");
+		builder.append(contents);
+		builder.append("]");
+		return builder.toString();
+	}
 }
