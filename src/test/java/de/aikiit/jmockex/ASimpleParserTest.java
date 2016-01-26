@@ -88,7 +88,7 @@ public class ASimpleParserTest {
 
     @Ignore("Not yet working")
     public void intentionallyLeftBlank() {
-        throw new NullPointerException("You should be ignored!");
+        throw new IllegalArgumentException("You should be ignored!");
     }
 
     @Test
