@@ -17,7 +17,6 @@
 package de.aikiit.jmockex.marker;
 
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Categories;
 import org.junit.experimental.categories.Category;
@@ -47,7 +46,7 @@ public class CategoriesMarkerTests {
     @RunWith(Categories.class)
     @Categories.IncludeCategory(IntegrationTestsMarker.class)
     @Categories.ExcludeCategory(UnitTestsMarker.class)
-    @Suite.SuiteClasses( { CategoriesMarkerTests.class })
+    @Suite.SuiteClasses({CategoriesMarkerTests.class})
     public class CategoriesMarkerTestsSuite {
         // what will we see :-D
     }
