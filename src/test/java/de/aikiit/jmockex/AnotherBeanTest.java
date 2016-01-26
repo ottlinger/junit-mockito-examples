@@ -25,6 +25,9 @@ import org.junit.runner.RunWith;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Theories.class)
@@ -37,6 +40,9 @@ public class AnotherBeanTest {
     public void checkAllNames(String name) {
         System.out.println(String.format("Testing with '%s'", name));
         assertEquals(name, new AnotherBean(name).getName());
+
+        // the hamcrest way:
+        assertThat(new AnotherBean(name), hasProperty("name", is(name)));
     }
 
     @Theory
