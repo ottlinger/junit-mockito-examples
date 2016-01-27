@@ -28,7 +28,7 @@ import static org.hamcrest.Matchers.containsString;
 public class ExpectingExceptionsTest {
 
     @Rule
-    public ExpectedException thrown = ExpectedException.none();
+    public final ExpectedException thrown = ExpectedException.none();
 
     @Test(expected = IllegalStateException.class)
     public void theOldWay() {

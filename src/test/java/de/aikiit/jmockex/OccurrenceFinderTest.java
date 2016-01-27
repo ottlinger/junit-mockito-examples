@@ -30,18 +30,21 @@ public class OccurrenceFinderTest {
             OccurrenceFinder.containsExactlyOnce(null, null);
             fail("Should throw an exception because arguments are invalid");
         } catch (IllegalArgumentException iae) {
+            // intended
         }
 
         try {
             OccurrenceFinder.containsExactlyOnce(null, "asdasdasd");
             fail("Should throw an exception because arguments are invalid");
         } catch (IllegalArgumentException iae) {
+            // intended
         }
 
         try {
             OccurrenceFinder.containsExactlyOnce("asdasdasd", null);
             fail("Should throw an exception because arguments are invalid");
         } catch (IllegalArgumentException iae) {
+            // intended
         }
     }
 
