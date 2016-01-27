@@ -1,5 +1,5 @@
 # junit-mockito-examples
-Examples to use Mockito, JUnit in test-driven-development (TDD).
+Show usage of Mockito, JUnit and lombok when doing test-driven-development (TDD).
 
 [![Build Status](https://travis-ci.org/ottlinger/junit-mockito-examples.svg?branch=master)](https://travis-ci.org/ottlinger/junit-mockito-examples)
 
