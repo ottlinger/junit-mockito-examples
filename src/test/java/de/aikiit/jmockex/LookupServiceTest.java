@@ -31,6 +31,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 
 // a bit picky concerning the correct import when putting more conditions into one, but readable
 public class LookupServiceTest {
+
     @Test
     public void lookupStuff() {
         Map<UUID, String> results = new LookupService().getNames("magic");
