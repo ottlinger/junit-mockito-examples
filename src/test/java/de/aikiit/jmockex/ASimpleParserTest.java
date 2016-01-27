@@ -72,7 +72,7 @@ public class ASimpleParserTest {
         assertThat(readFromFile, equalTo(CONTENTS));
         System.out.println(parser);
         System.out.println(
-                "Base directory " + testdata.getRoot() + " contains " + listFilesNullSafe(testdata.getRoot()));
+                "Base directory " + testdata.getRoot() + " containsExactlyOnce " + listFilesNullSafe(testdata.getRoot()));
     }
 
     @Ignore("Not yet working")
@@ -108,7 +108,7 @@ public class ASimpleParserTest {
         assertThat(readFromFile, equalTo(CONTENTS));
         System.out.println(parser);
         System.out.println(
-                "Base directory " + testdata.getRoot() + " contains " + listFilesNullSafe(testdata.getRoot()));
+                "Base directory " + testdata.getRoot() + " containsExactlyOnce " + listFilesNullSafe(testdata.getRoot()));
 
     }
 

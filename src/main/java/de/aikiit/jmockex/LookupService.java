@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 import java.util.Map;
 import java.util.UUID;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
 public final class LookupService {
     public Map<UUID, String> getNames(String filter) {
         Map<UUID,String> results = Maps.newHashMap();

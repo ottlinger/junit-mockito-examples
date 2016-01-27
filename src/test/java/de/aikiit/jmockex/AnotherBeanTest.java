@@ -33,6 +33,7 @@ import static org.junit.Assert.assertEquals;
 @RunWith(Theories.class)
 public class AnotherBeanTest {
 
+    // needs to be a list, map is not supported here
     @DataPoints
     public static final List<String> names = Arrays.asList("A", "B", "C");
 
