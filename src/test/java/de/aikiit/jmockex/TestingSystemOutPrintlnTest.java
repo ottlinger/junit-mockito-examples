@@ -16,25 +16,28 @@
  */
 package de.aikiit.jmockex;
 
-import com.google.common.collect.Maps;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.Map;
-import java.util.UUID;
+import java.io.PrintStream;
 
-@NoArgsConstructor(access = AccessLevel.PUBLIC)
-public final class LookupService {
-    public Map<UUID, String> getNames(String filter) {
-        Map<UUID,String> results = Maps.newHashMap();
-        if("magic".equals(filter)) {
-            results.put(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910"), "Alfons");
-            results.put(UUID.fromString("bf457d0c-b952-4f93-aaf0-5ccca62c3156"), "Zitterbacke");
-        }
-        return results;
-    }
+import static org.mockito.Matchers.contains;
+import static org.mockito.Matchers.startsWith;
+import static org.mockito.Mockito.verify;
 
-    public static void help() {
-        System.out.println("This is an example service implementation used to demonstrate testing :D");
+@RunWith(MockitoJUnitRunner.class)
+public class TestingSystemOutPrintlnTest {
+
+    @Mock
+    private PrintStream console;
+
+    @Test
+    public void ensureHelpIsPrinted() {
+        System.setOut(console);
+        LookupService.help();
+        verify(console).println(contains("example"));
+        verify(console).println(startsWith("This is an"));
     }
 }
