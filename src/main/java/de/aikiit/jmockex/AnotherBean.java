@@ -16,17 +16,14 @@
  */
 package de.aikiit.jmockex;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@AllArgsConstructor
+@Data
 public class AnotherBean {
 
     private String name;
-
-    public AnotherBean(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
-    }
 
     public void perform() {
         throw new IllegalStateException("You are not allowed to perform anything here.");
