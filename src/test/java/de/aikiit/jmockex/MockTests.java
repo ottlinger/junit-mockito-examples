@@ -16,8 +16,10 @@
  */
 package de.aikiit.jmockex;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
@@ -26,9 +28,11 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URLConnection;
+import java.util.List;
+import java.util.UUID;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -64,6 +68,40 @@ public class MockTests {
         OutputStreamWriter osw = new OutputStreamWriter(mock);
         osw.close();
         verify(mock).close();
+    }
+
+
+    // write your own matcher
+    @Test
+    public void saveUsageWithRoutesAndFieldIdMerge() throws IOException {
+        // WHEN
+        final UUID field1 = UUID.randomUUID();
+        final UUID field2 = UUID.randomUUID();
+        final UUID field3 = UUID.randomUUID();
+        final UUID field4 = UUID.randomUUID();
+        when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
+
+        ArgumentMatcher<List> matchesUUIDs = new
+                ArgumentMatcher<List>() {
+                    @Override
+                    public boolean matches(Object data) {
+                        if (data == null) {
+                            return false;
+                        }
+
+                        List<UUID> usageData = (List<UUID>) data;
+                        return usageData.size() == 4 &&
+                                usageData.containsAll(Lists.newArrayList(field1, field2,
+                                        field3, field4));
+                    }
+                };
+
+        // THEN
+        assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
+
+        assertFalse(matchesUUIDs.matches(null));
+        assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
+        assertFalse(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
     }
 
 }
