@@ -16,11 +16,12 @@
  */
 package de.aikiit.jmockex;
 
+import static org.hamcrest.Matchers.containsString;
+import static org.junit.Assert.fail;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import static org.hamcrest.Matchers.containsString;
 
 /**
  * https://github.com/junit-team/junit/wiki/Exception-testing
@@ -33,7 +34,16 @@ public class ExpectingExceptionsTest {
     @Test(expected = IllegalStateException.class)
     public void theOldWay() {
         new AnotherBean("example").perform();
-        // or try-catch - assertMessage
+    }
+
+    @Test
+    public void veryOldWay() {
+        try {
+        	new AnotherBean("example").perform();
+        	fail("Not expected");
+        } catch(final IllegalStateException ise) {
+        	// expected
+        }
     }
 
     @Test
