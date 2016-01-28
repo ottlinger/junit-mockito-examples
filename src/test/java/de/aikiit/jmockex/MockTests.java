@@ -16,13 +16,13 @@
  */
 package de.aikiit.jmockex;
 
-import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatcher;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import static junit.framework.TestCase.assertFalse;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -31,77 +31,81 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.UUID;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatcher;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import com.google.common.collect.Lists;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MockTests {
-    private static final int TIMEOUT = 4711;
-    @Mock
-    private URLConnection connection;
+	private static final int TIMEOUT = 4711;
+	@Mock
+	private URLConnection connection;
 
-    @InjectMocks
-    private UrlConnector connector;
+	@InjectMocks
+	private UrlConnector connector;
 
-    @Test
-    public void injectionWorks() {
-        assertNotNull(connector);
-        assertEquals(connection, connector.getConnection());
-    }
+	@Test
+	public void injectionWorks() {
+		assertNotNull(connector);
+		assertEquals(connection, connector.getConnection());
+	}
 
-    @Test
-    public void getTimeout() {
-        // WHEN
-        when(connection.getConnectTimeout()).thenReturn(TIMEOUT);
+	@Test
+	public void getTimeout() {
+		// WHEN
+		when(connection.getConnectTimeout()).thenReturn(TIMEOUT);
 
-        // THEN
-        assertEquals(TIMEOUT, connector.getTimeout());
-        verify(connection).getConnectTimeout();
-    }
+		// THEN
+		assertEquals(TIMEOUT, connector.getTimeout());
+		verify(connection).getConnectTimeout();
+	}
 
-    // useful verification calls
-    @Test
-    public void closeOutputStreamOnClose()
-            throws IOException {
-        OutputStream mock = mock(OutputStream.class);
-        OutputStreamWriter osw = new OutputStreamWriter(mock);
-        osw.close();
-        verify(mock).close();
-    }
+	// useful verification calls
+	@Test
+	public void closeOutputStreamOnClose() throws IOException {
+		final OutputStream mock = mock(OutputStream.class);
+		final OutputStreamWriter osw = new OutputStreamWriter(mock);
+		osw.close();
+		verify(mock).close();
+	}
 
+	// write your own matcher
+	@Test
+	public void saveUsageWithRoutesAndFieldIdMerge() throws IOException {
+		// WHEN
+		final UUID field1 = UUID.randomUUID();
+		final UUID field2 = UUID.randomUUID();
+		final UUID field3 = UUID.randomUUID();
+		final UUID field4 = UUID.randomUUID();
+		when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
 
-    // write your own matcher
-    @Test
-    public void saveUsageWithRoutesAndFieldIdMerge() throws IOException {
-        // WHEN
-        final UUID field1 = UUID.randomUUID();
-        final UUID field2 = UUID.randomUUID();
-        final UUID field3 = UUID.randomUUID();
-        final UUID field4 = UUID.randomUUID();
-        when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
+		@SuppressWarnings("rawtypes")
+		final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public boolean matches(Object data) {
+				if (data == null) {
+					return false;
+				}
 
-        ArgumentMatcher<List> matchesUUIDs = new
-                ArgumentMatcher<List>() {
-                    @Override
-                    public boolean matches(Object data) {
-                        if (data == null) {
-                            return false;
-                        }
+				final List<UUID> usageData = (List<UUID>) data;
+				return usageData.size() == 4
+						&& usageData.containsAll(Lists.newArrayList(field1, field2, field3, field4));
+			}
+		};
 
-                        List<UUID> usageData = (List<UUID>) data;
-                        return usageData.size() == 4 &&
-                                usageData.containsAll(Lists.newArrayList(field1, field2,
-                                        field3, field4));
-                    }
-                };
+		// THEN
+		assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
 
-        // THEN
-        assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
-
-        assertFalse(matchesUUIDs.matches(null));
-        assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
-        assertFalse(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
-    }
+		assertFalse(matchesUUIDs.matches(null));
+		assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
+		assertFalse(matchesUUIDs
+				.matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
+	}
 
 }

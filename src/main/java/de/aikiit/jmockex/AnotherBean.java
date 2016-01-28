@@ -23,9 +23,9 @@ import lombok.Data;
 @Data
 public class AnotherBean {
 
-    private String name;
+	private String name;
 
-    public void perform() {
-        throw new IllegalStateException("You are not allowed to perform anything here.");
-    }
+	public void perform() {
+		throw new IllegalStateException("You are not allowed to perform anything here.");
+	}
 }

@@ -16,6 +16,7 @@
  */
 package de.aikiit.jmockex.marker;
 
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Categories;
@@ -23,32 +24,30 @@ import org.junit.experimental.categories.Category;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import static org.junit.Assert.fail;
-
 /**
  * https://github.com/junit-team/junit/wiki/Categories
  */
 public class CategoriesMarkerTests {
 
-    @Category(UnitTestsMarker.class)
-    // since it's taken by the normal runner as well
-    @Test(expected = AssertionError.class)
-    public void justFail() {
-        fail("This should not be tested here.");
-    }
+	@Category(UnitTestsMarker.class)
+	// since it's taken by the normal runner as well
+	@Test(expected = AssertionError.class)
+	public void justFail() {
+		fail("This should not be tested here.");
+	}
 
-    @Category(IntegrationTestsMarker.class)
-    @Test
-    public void thisIsAnIntegrationTest() {
-        System.out.println("This is an integrationTest :-D");
-    }
+	@Category(IntegrationTestsMarker.class)
+	@Test
+	public void thisIsAnIntegrationTest() {
+		System.out.println("This is an integrationTest :-D");
+	}
 
-    @RunWith(Categories.class)
-    @Categories.IncludeCategory(IntegrationTestsMarker.class)
-    @Categories.ExcludeCategory(UnitTestsMarker.class)
-    @Suite.SuiteClasses({CategoriesMarkerTests.class})
-    public class CategoriesMarkerTestsSuite {
-        // what will we see :-D
-    }
+	@RunWith(Categories.class)
+	@Categories.IncludeCategory(IntegrationTestsMarker.class)
+	@Categories.ExcludeCategory(UnitTestsMarker.class)
+	@Suite.SuiteClasses({ CategoriesMarkerTests.class })
+	public class CategoriesMarkerTestsSuite {
+		// what will we see :-D
+	}
 
 }

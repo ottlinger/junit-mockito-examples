@@ -29,19 +29,19 @@ import com.google.common.base.Charsets;
  *
  */
 public class ASimpleParser {
-	
+
 	private final Path path;
 	private StringBuilder contents;
 
 	public ASimpleParser(Path path) {
-		if(path == null) {
+		if (path == null) {
 			throw new IllegalArgumentException("No null arguments allowed.");
 		}
-		
+
 		this.path = path;
 		this.contents = new StringBuilder();
 	}
-	
+
 	public String getContents() {
 		return contents.toString();
 	}
@@ -50,7 +50,7 @@ public class ASimpleParser {
 		contents = new StringBuilder(input);
 		return this;
 	}
-	
+
 	public ASimpleParser append(String input) {
 		contents.append(input);
 		return this;

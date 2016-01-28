@@ -16,25 +16,26 @@
  */
 package de.aikiit.jmockex;
 
-import com.google.common.collect.Maps;
-import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
-
 import java.util.Map;
 import java.util.UUID;
 
+import com.google.common.collect.Maps;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public final class LookupService {
-    public Map<UUID, String> getNames(String filter) {
-        Map<UUID,String> results = Maps.newHashMap();
-        if("magic".equals(filter)) {
-            results.put(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910"), "Alfons");
-            results.put(UUID.fromString("bf457d0c-b952-4f93-aaf0-5ccca62c3156"), "Zitterbacke");
-        }
-        return results;
-    }
+	public Map<UUID, String> getNames(String filter) {
+		final Map<UUID, String> results = Maps.newHashMap();
+		if ("magic".equals(filter)) {
+			results.put(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910"), "Alfons");
+			results.put(UUID.fromString("bf457d0c-b952-4f93-aaf0-5ccca62c3156"), "Zitterbacke");
+		}
+		return results;
+	}
 
-    public static void help() {
-        System.out.println("This is an example service implementation used to demonstrate testing :D");
-    }
+	public static void help() {
+		System.out.println("This is an example service implementation used to demonstrate testing :D");
+	}
 }

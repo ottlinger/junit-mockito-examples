@@ -16,28 +16,28 @@
  */
 package de.aikiit.jmockex;
 
+import static org.mockito.Matchers.contains;
+import static org.mockito.Matchers.startsWith;
+import static org.mockito.Mockito.verify;
+
+import java.io.PrintStream;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.io.PrintStream;
-
-import static org.mockito.Matchers.contains;
-import static org.mockito.Matchers.startsWith;
-import static org.mockito.Mockito.verify;
-
 @RunWith(MockitoJUnitRunner.class)
 public class TestingSystemOutPrintlnTest {
 
-    @Mock
-    private PrintStream console;
+	@Mock
+	private PrintStream console;
 
-    @Test
-    public void ensureHelpIsPrinted() {
-        System.setOut(console);
-        LookupService.help();
-        verify(console).println(contains("example"));
-        verify(console).println(startsWith("This is an"));
-    }
+	@Test
+	public void ensureHelpIsPrinted() {
+		System.setOut(console);
+		LookupService.help();
+		verify(console).println(contains("example"));
+		verify(console).println(startsWith("This is an"));
+	}
 }

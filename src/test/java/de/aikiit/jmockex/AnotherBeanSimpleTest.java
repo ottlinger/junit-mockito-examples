@@ -16,28 +16,28 @@
  */
 package de.aikiit.jmockex;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.experimental.theories.DataPoint;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-import static org.junit.Assert.assertEquals;
-
 @RunWith(Theories.class)
 public class AnotherBeanSimpleTest {
 
-    @DataPoint
-    public static final String name = "My";
-    @DataPoint
-    public static final String name1 = "name";
-    @DataPoint
-    public static final String name2 = "is";
-    @DataPoint
-    public static final String name3 = "unknown.";
+	@DataPoint
+	public static final String name = "My";
+	@DataPoint
+	public static final String name1 = "name";
+	@DataPoint
+	public static final String name2 = "is";
+	@DataPoint
+	public static final String name3 = "unknown.";
 
-    @Theory
-    public void verifyNameIsOkay(String aName) {
-        System.out.println(String.format("Name under test is '%s'", aName));
-        assertEquals(aName, new AnotherBean(aName).getName());
-    }
+	@Theory
+	public void verifyNameIsOkay(String aName) {
+		System.out.println(String.format("Name under test is '%s'", aName));
+		assertEquals(aName, new AnotherBean(aName).getName());
+	}
 }

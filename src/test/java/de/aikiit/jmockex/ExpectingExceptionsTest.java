@@ -28,34 +28,34 @@ import org.junit.rules.ExpectedException;
  */
 public class ExpectingExceptionsTest {
 
-    @Rule
-    public final ExpectedException thrown = ExpectedException.none();
+	@Rule
+	public final ExpectedException thrown = ExpectedException.none();
 
-    @Test(expected = IllegalStateException.class)
-    public void theOldWay() {
-        new AnotherBean("example").perform();
-    }
+	@Test(expected = IllegalStateException.class)
+	public void theOldWay() {
+		new AnotherBean("example").perform();
+	}
 
-    @Test
-    public void veryOldWay() {
-        try {
-        	new AnotherBean("example").perform();
-        	fail("Not expected");
-        } catch(final IllegalStateException ise) {
-        	// expected
-        }
-    }
+	@Test
+	public void veryOldWay() {
+		try {
+			new AnotherBean("example").perform();
+			fail("Not expected");
+		} catch (final IllegalStateException ise) {
+			// expected
+		}
+	}
 
-    @Test
-    public void newWay() throws IllegalStateException {
-        thrown.expect(IllegalStateException.class);
-        thrown.expectMessage("You are not allowed to perform anything here.");
-        thrown.expectMessage(containsString("You are not allowed to "));
-        // Enable to see nice error messages
-        // thrown.expect(hasProperty("name", is("example")));
+	@Test
+	public void newWay() throws IllegalStateException {
+		thrown.expect(IllegalStateException.class);
+		thrown.expectMessage("You are not allowed to perform anything here.");
+		thrown.expectMessage(containsString("You are not allowed to "));
+		// Enable to see nice error messages
+		// thrown.expect(hasProperty("name", is("example")));
 
-        // put your code at the end
-        new AnotherBean("example").perform();
-    }
+		// put your code at the end
+		new AnotherBean("example").perform();
+	}
 
 }

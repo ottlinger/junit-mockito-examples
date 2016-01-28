@@ -16,34 +16,37 @@
  */
 package de.aikiit.jmockex;
 
-import org.junit.Test;
-
-import java.util.Map;
-import java.util.UUID;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsMapContaining.*;
+import static org.hamcrest.collection.IsMapContaining.hasEntry;
+import static org.hamcrest.collection.IsMapContaining.hasKey;
+import static org.hamcrest.collection.IsMapContaining.hasValue;
 import static org.hamcrest.core.AllOf.allOf;
 import static org.hamcrest.core.IsEqual.equalTo;
+
+import java.util.Map;
+import java.util.UUID;
+
+import org.junit.Test;
 
 // a bit picky concerning the correct import when putting more conditions into one, but readable
 public class LookupServiceTest {
 
-    @Test
-    public void lookupStuff() {
-        Map<UUID, String> results = new LookupService().getNames("magic");
-        assertThat(results.keySet(), hasSize(equalTo(2)));
-        assertThat(results, hasEntry(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910"), "Alfons"));
-        assertThat(results, hasValue("Alfons"));
-        assertThat(results, allOf(hasKey(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910")), hasKey(UUID.fromString("bf457d0c-b952-4f93-aaf0-5ccca62c3156"))));
-    }
+	@Test
+	public void lookupStuff() {
+		final Map<UUID, String> results = new LookupService().getNames("magic");
+		assertThat(results.keySet(), hasSize(equalTo(2)));
+		assertThat(results, hasEntry(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910"), "Alfons"));
+		assertThat(results, hasValue("Alfons"));
+		assertThat(results, allOf(hasKey(UUID.fromString("f3c028fb-c9c0-4f07-8ed5-09259de0d910")),
+				hasKey(UUID.fromString("bf457d0c-b952-4f93-aaf0-5ccca62c3156"))));
+	}
 
-    @Test
-    public void lookupWithWrongMagicFilter() {
-        Map<UUID, String> results = new LookupService().getNames(null);
-        assertThat(results.keySet(), is(empty()));
-    }
+	@Test
+	public void lookupWithWrongMagicFilter() {
+		final Map<UUID, String> results = new LookupService().getNames(null);
+		assertThat(results.keySet(), is(empty()));
+	}
 }

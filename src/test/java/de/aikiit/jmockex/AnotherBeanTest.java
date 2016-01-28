@@ -16,41 +16,41 @@
  */
 package de.aikiit.jmockex;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Ignore;
 import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
-import java.util.Arrays;
-import java.util.List;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertEquals;
-
 @RunWith(Theories.class)
 public class AnotherBeanTest {
 
-    // needs to be a list, map is not supported here
-    @DataPoints
-    public static final List<String> names = Arrays.asList("A", "B", "C");
+	// needs to be a list, map is not supported here
+	@DataPoints
+	public static final List<String> names = Arrays.asList("A", "B", "C");
 
-    @Theory
-    public void checkAllNames(String name) {
-        System.out.println(String.format("Testing with '%s'", name));
-        assertEquals(name, new AnotherBean(name).getName());
+	@Theory
+	public void checkAllNames(String name) {
+		System.out.println(String.format("Testing with '%s'", name));
+		assertEquals(name, new AnotherBean(name).getName());
 
-        // the hamcrest way:
-        assertThat(new AnotherBean(name), hasProperty("name", is(name)));
-    }
+		// the hamcrest way:
+		assertThat(new AnotherBean(name), hasProperty("name", is(name)));
+	}
 
-    @Theory
-    @Ignore("Enable to see how this test throws an error and theories log their expectation failures")
-    public void checkAllNamesWithError(String name) {
-        System.out.println(String.format("Testing with '%s'", name));
-        assertEquals("WWW", new AnotherBean(name).getName());
-    }
+	@Theory
+	@Ignore("Enable to see how this test throws an error and theories log their expectation failures")
+	public void checkAllNamesWithError(String name) {
+		System.out.println(String.format("Testing with '%s'", name));
+		assertEquals("WWW", new AnotherBean(name).getName());
+	}
 
 }

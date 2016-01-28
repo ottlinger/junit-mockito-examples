@@ -16,16 +16,15 @@
  */
 package de.aikiit.jmockex;
 
+import java.net.URLConnection;
 
 import lombok.Data;
 
-import java.net.URLConnection;
-
 @Data
 public class UrlConnector {
-    private URLConnection connection;
+	private URLConnection connection;
 
-    public int getTimeout() {
-        return connection.getConnectTimeout();
-    }
+	public int getTimeout() {
+		return connection.getConnectTimeout();
+	}
 }

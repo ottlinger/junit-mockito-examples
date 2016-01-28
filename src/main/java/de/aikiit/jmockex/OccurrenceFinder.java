@@ -17,6 +17,7 @@
 package de.aikiit.jmockex;
 
 import com.google.common.base.Strings;
+
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -26,14 +27,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class OccurrenceFinder {
 
-    public static boolean containsExactlyOnce(String source, String marker) {
-       return containsExactlyTimes(1, source, marker);
-    }
+	public static boolean containsExactlyOnce(String source, String marker) {
+		return containsExactlyTimes(1, source, marker);
+	}
 
-    public static boolean containsExactlyTimes(int times, String source, String marker) {
-        if(Strings.isNullOrEmpty(source) || Strings.isNullOrEmpty(marker)) {
-            throw new IllegalArgumentException("No null arguments allowed");
-        }
-        return times == ((source.length() - source.replace(marker, "").length()) / marker.length());
-    }
+	public static boolean containsExactlyTimes(int times, String source, String marker) {
+		if (Strings.isNullOrEmpty(source) || Strings.isNullOrEmpty(marker)) {
+			throw new IllegalArgumentException("No null arguments allowed");
+		}
+		return times == ((source.length() - source.replace(marker, "").length()) / marker.length());
+	}
 }
