@@ -16,6 +16,7 @@
  */
 package de.aikiit.jmockex;
 
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Matchers.contains;
 import static org.mockito.Matchers.startsWith;
 import static org.mockito.Mockito.verify;
@@ -37,6 +38,7 @@ public class TestingSystemOutPrintlnTest {
 	public void ensureHelpIsPrinted() {
 		System.setOut(console);
 		LookupService.help();
+		assertEquals(console, System.out);
 		verify(console).println(contains("example"));
 		verify(console).println(startsWith("This is an"));
 	}
