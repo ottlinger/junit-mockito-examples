@@ -11,3 +11,7 @@ Ready](https://badge.waffle.io/ottlinger/junit-mockito-examples.svg?label=ready&
 y)](http://waffle.io/ottlinger/junit-mockito-examples)
 
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/ab19f8aeeb264e0bbad1740e07a765aa)](https://www.codacy.com/app/github_25/junit-mockito-examples)
+
+## History
+### v0.0.1 - 2016-01-29
+First version for an internal TecTalk at work.
