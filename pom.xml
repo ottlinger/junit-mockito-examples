@@ -14,7 +14,7 @@
   <artifactId>jmockex</artifactId>
   <packaging>jar</packaging>
   <version>0.0.2-SNAPSHOT</version>
-  <name>JUnitMockitoExamples - a basic tutorial</name>
+  <name>JUnitMockitoExamples</name>
   <description>A tutorial about TDD with JUnit and mockito.</description>
   <url>https://github.com/ottlinger/junit-mockito-examples/</url>
   <organization>
