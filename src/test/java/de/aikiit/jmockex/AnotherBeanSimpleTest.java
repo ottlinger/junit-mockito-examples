@@ -40,4 +40,9 @@ public class AnotherBeanSimpleTest {
 		System.out.println(String.format("Name under test is '%s'", aName));
 		assertEquals(aName, new AnotherBean(aName).getName());
 	}
+
+	@DataPoint
+	public static String getName() {
+		return "Er hieß Waldemar, weil es im Wald geschah :-)";
+	}
 }
