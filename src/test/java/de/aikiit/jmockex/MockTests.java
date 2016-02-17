@@ -20,10 +20,9 @@ import static junit.framework.TestCase.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -42,70 +41,79 @@ import com.google.common.collect.Lists;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MockTests {
-	private static final int TIMEOUT = 4711;
-	@Mock
-	private URLConnection connection;
+    private static final int TIMEOUT = 4711;
+    @Mock
+    private URLConnection connection;
 
-	@InjectMocks
-	private UrlConnector connector;
+    @InjectMocks
+    private UrlConnector connector;
 
-	@Test
-	public void injectionWorks() {
-		assertNotNull(connector);
-		assertEquals(connection, connector.getConnection());
-	}
+    @Test
+    public void injectionWorks() {
+        assertNotNull(connector);
+        assertEquals(connection, connector.getConnection());
+    }
 
-	@Test
-	public void getTimeout() {
-		// WHEN
-		when(connection.getConnectTimeout()).thenReturn(TIMEOUT);
+    @Test
+    public void getTimeout() {
+        // WHEN
+        when(connection.getConnectTimeout()).thenReturn(TIMEOUT);
 
-		// THEN
-		assertEquals(TIMEOUT, connector.getTimeout());
-		verify(connection).getConnectTimeout();
-	}
+        // THEN
+        assertEquals(TIMEOUT, connector.getTimeout());
+        verify(connection).getConnectTimeout();
+    }
 
-	// useful verification calls
-	@Test
-	public void closeOutputStreamOnClose() throws IOException {
-		final OutputStream mock = mock(OutputStream.class);
-		final OutputStreamWriter osw = new OutputStreamWriter(mock);
-		osw.close();
-		verify(mock).close();
-	}
+    // useful verification calls
+    @Test
+    public void closeOutputStreamOnClose() throws IOException {
+        final OutputStream mock = mock(OutputStream.class);
+        final OutputStreamWriter osw = new OutputStreamWriter(mock);
+        osw.close();
+        verify(mock).close();
+    }
 
-	// write your own matcher
-	@Test
-	public void saveUsageWithRoutesAndFieldIdMerge() throws IOException {
-		// WHEN
-		final UUID field1 = UUID.randomUUID();
-		final UUID field2 = UUID.randomUUID();
-		final UUID field3 = UUID.randomUUID();
-		final UUID field4 = UUID.randomUUID();
-		when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
+    // write your own matcher
+    @Test
+    public void saveUsageWithRoutesAndFieldIdMerge() throws IOException {
+        // WHEN
+        final UUID field1 = UUID.randomUUID();
+        final UUID field2 = UUID.randomUUID();
+        final UUID field3 = UUID.randomUUID();
+        final UUID field4 = UUID.randomUUID();
+        when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
 
-		@SuppressWarnings("rawtypes")
-		final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
-			@SuppressWarnings("unchecked")
-			@Override
-			public boolean matches(Object data) {
-				if (data == null) {
-					return false;
-				}
+        @SuppressWarnings("rawtypes")
+        final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
+            @SuppressWarnings("unchecked")
+            @Override
+            public boolean matches(Object data) {
+                if (data == null) {
+                    return false;
+                }
 
-				final List<UUID> usageData = (List<UUID>) data;
-				return usageData.size() == 4
-						&& usageData.containsAll(Lists.newArrayList(field1, field2, field3, field4));
-			}
-		};
+                final List<UUID> usageData = (List<UUID>) data;
+                return usageData.size() == 4
+                        && usageData.containsAll(Lists.newArrayList(field1, field2, field3, field4));
+            }
+        };
 
-		// THEN
-		assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
+        // THEN
+        assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
 
-		assertFalse(matchesUUIDs.matches(null));
-		assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
-		assertFalse(matchesUUIDs
-				.matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
-	}
+        assertFalse(matchesUUIDs.matches(null));
+        assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
+        assertFalse(matchesUUIDs
+                .matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
+    }
+
+    @Test(expected = FileNotFoundException.class)
+    public void mockEmptyMethodException() {
+        UrlConnector spy = spy(UrlConnector.class);
+
+        doThrow(new FileNotFoundException()).when(spy).getConnection();
+        spy.getConnection();
+    }
+
 
 }
