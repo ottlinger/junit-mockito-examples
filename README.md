@@ -15,3 +15,5 @@ y)](http://waffle.io/ottlinger/junit-mockito-examples)
 ## History
 ### v0.0.1 - 2016-01-29
 First version for an internal TecTalk at work.
+### v0.0.2 - 2016-03
+Reformat and add more examples as an internal library.
