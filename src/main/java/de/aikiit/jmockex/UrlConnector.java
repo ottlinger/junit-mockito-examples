@@ -16,7 +16,6 @@
  */
 package de.aikiit.jmockex;
 
-import java.net.URL;
 import java.net.URLConnection;
 
 import lombok.Data;
