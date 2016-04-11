@@ -19,13 +19,19 @@ package de.aikiit.jmockex;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
+import org.junit.runners.model.TestTimedOutException;
 
 public class TimeoutTest {
     @Rule
     public Timeout globalTimeout = Timeout.seconds(3);
 
-    @Test
+    // @Test(expected = TestTimedOutException.class)
     public void willWaitForGlobalTimeout() {
         while (true);
+    }
+
+    @Test
+    public void nothingHappensIfTimeoutIsNotHit() {
+        System.out.println("Good morning everybody");
     }
 }
