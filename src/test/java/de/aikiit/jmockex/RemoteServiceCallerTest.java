@@ -36,6 +36,7 @@ public class RemoteServiceCallerTest {
     @Test
     public void argumentCaptor() {
         assertNotNull(caller);
+        assertNotNull(remoteService);
         // TODO to be continued :-D
 
     }
