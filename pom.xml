@@ -43,7 +43,7 @@
     <url>https://github.com/ottlinger/junit-mockito-examples</url>
   </scm>
   <properties>
-    <logger.version>2.5</logger.version>
+    <logger.version>2.6</logger.version>
     <junit.version>4.12</junit.version>
     <mockito.version>1.10.19</mockito.version>
     <cobertura.version>2.6</cobertura.version>
