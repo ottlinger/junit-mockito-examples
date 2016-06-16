@@ -45,7 +45,7 @@
   <properties>
     <logger.version>2.6</logger.version>
     <junit.version>4.12</junit.version>
-    <mockito.version>1.10.19</mockito.version>
+    <mockito.version>2.0.2-beta</mockito.version>
     <cobertura.version>2.6</cobertura.version>
     <lombok.version>1.16.8</lombok.version>
     <javadoc.version>2.10.3</javadoc.version>
@@ -211,7 +211,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.5.201505241946</version>
+        <version>0.7.7.201606060606</version>
         <executions>
           <execution>
             <goals>
