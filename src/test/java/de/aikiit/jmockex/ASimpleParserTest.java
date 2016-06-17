@@ -16,11 +16,13 @@
  */
 package de.aikiit.jmockex;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.Matchers.isA;
-import static org.junit.Assert.assertNotNull;
+import com.google.common.base.Charsets;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.ClassRule;
+import org.junit.Ignore;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
 import java.io.IOException;
@@ -33,14 +35,12 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.ClassRule;
-import org.junit.Ignore;
-import org.junit.Test;
-import org.junit.rules.TemporaryFolder;
-
-import com.google.common.base.Charsets;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.isA;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 
 public class ASimpleParserTest {
 
@@ -117,10 +117,10 @@ public class ASimpleParserTest {
 		final String readFromFile = parser.getContents();
 		assertThat(readFromFile, isA(String.class));
 		assertThat(readFromFile, equalTo(CONTENTS));
+		assertFalse(parser.toString().isEmpty());
 		System.out.println(parser);
 		System.out.println("Base directory " + testdata.getRoot() + " containsExactlyOnce "
 				+ listFilesNullSafe(testdata.getRoot()));
-
 	}
 
 	@AfterClass
