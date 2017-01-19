@@ -18,3 +18,6 @@ y)](http://waffle.io/ottlinger/junit-mockito-examples)
 First version for an internal TecTalk at work. [Abstract](abstract.md)
 ### v0.0.2 - 2016-03
 Reformat and add more examples as an internal library.
+
+### v1.0.0 - 2017
+Update to newer mockito and assertj versions .... work in progress.
