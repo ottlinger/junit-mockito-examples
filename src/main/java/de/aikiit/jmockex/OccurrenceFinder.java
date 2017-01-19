@@ -35,6 +35,6 @@ public final class OccurrenceFinder {
 		if (Strings.isNullOrEmpty(source) || Strings.isNullOrEmpty(marker)) {
 			throw new IllegalArgumentException("No null arguments allowed");
 		}
-		return times == ((source.length() - source.replace(marker, "").length()) / marker.length());
+		return times == (source.length() - source.replace(marker, "").length()) / marker.length();
 	}
 }
