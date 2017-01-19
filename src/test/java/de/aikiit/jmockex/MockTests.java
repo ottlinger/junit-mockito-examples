@@ -16,11 +16,14 @@
  */
 package de.aikiit.jmockex;
 
-import static junit.framework.TestCase.assertFalse;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.*;
+import com.google.common.collect.Lists;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatcher;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -30,14 +33,8 @@ import java.net.URLConnection;
 import java.util.List;
 import java.util.UUID;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatcher;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-
-import com.google.common.collect.Lists;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MockTests {
@@ -50,8 +47,8 @@ public class MockTests {
 
     @Test
     public void injectionWorks() {
-        assertNotNull(connector);
-        assertEquals(connection, connector.getConnection());
+        assertThat(connector).isNotNull();
+        assertThat(connection).isEqualTo(connector.getConnection());
     }
 
     @Test
@@ -60,14 +57,14 @@ public class MockTests {
         when(connection.getConnectTimeout()).thenReturn(TIMEOUT);
 
         // THEN
-        assertEquals(TIMEOUT, connector.getTimeout());
+        assertThat(TIMEOUT).isEqualTo(connector.getTimeout());
         verify(connection).getConnectTimeout();
     }
 
     // useful verification calls
     @Test
     public void closeOutputStreamOnClose() throws IOException {
-        final OutputStream mock = mock(OutputStream.class);
+        final OutputStream mock = Mockito.mock(OutputStream.class);
         final OutputStreamWriter osw = new OutputStreamWriter(mock);
         osw.close();
         verify(mock).close();
@@ -86,8 +83,7 @@ public class MockTests {
         @SuppressWarnings("rawtypes")
         final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
             @SuppressWarnings("unchecked")
-            @Override
-            public boolean matches(Object data) {
+            public boolean matches(List data) {
                 if (data == null) {
                     return false;
                 }
@@ -99,17 +95,18 @@ public class MockTests {
         };
 
         // THEN
-        assertTrue(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4)));
+        assertThat(matchesUUIDs.matches(Lists.newArrayList(field1, field2, field3, field4))).isTrue();
 
-        assertFalse(matchesUUIDs.matches(null));
-        assertFalse(matchesUUIDs.matches(Lists.newArrayList()));
-        assertFalse(matchesUUIDs
-                .matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4)));
+        assertThat(matchesUUIDs.matches(null)).isFalse();
+        assertThat(matchesUUIDs.matches(Lists.newArrayList())).isFalse();
+        assertThat(matchesUUIDs
+                .matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4))).isFalse();
     }
 
     @Test(expected = FileNotFoundException.class)
     public void mockEmptyMethodException() {
-        UrlConnector spy = spy(UrlConnector.class);
+        UrlConnector spy = Mockito.
+                spy(UrlConnector.class);
 
         doThrow(new FileNotFoundException()).when(spy).getConnection();
         spy.getConnection();
