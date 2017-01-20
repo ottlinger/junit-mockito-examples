@@ -64,7 +64,7 @@ public class MockTests {
     // useful verification calls
     @Test
     public void closeOutputStreamOnClose() throws IOException {
-        final OutputStream mock = Mockito.mock(OutputStream.class);
+        final OutputStream mock = mock(OutputStream.class);
         final OutputStreamWriter osw = new OutputStreamWriter(mock);
         osw.close();
         verify(mock).close();
@@ -105,8 +105,7 @@ public class MockTests {
 
     @Test(expected = FileNotFoundException.class)
     public void mockEmptyMethodException() {
-        UrlConnector spy = Mockito.
-                spy(UrlConnector.class);
+        UrlConnector spy = spy(UrlConnector.class);
 
         doThrow(new FileNotFoundException()).when(spy).getConnection();
         spy.getConnection();

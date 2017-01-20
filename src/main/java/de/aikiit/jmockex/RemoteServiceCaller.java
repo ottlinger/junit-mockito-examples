@@ -18,14 +18,14 @@ package de.aikiit.jmockex;
 
 public class RemoteServiceCaller {
 
+    private RemoteService remoteService = new RemoteService();
+
     // not final because it can only be mocked if not final :-)
     public static class RemoteService {
         public String convert(long value) {
             return "alonglongway:" + value;
         }
     }
-
-    private RemoteService remoteService = new RemoteService();
 
     public String serviceCall(long timestamp) {
         return remoteService.convert(timestamp);

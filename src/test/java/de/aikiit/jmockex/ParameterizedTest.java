@@ -21,20 +21,20 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ParameterizedTest {
+    private int number;
+    private int expectation;
 
     @Parameterized.Parameters
     public static List expectations() {
-        return Lists.newArrayList(new Object[][]{{1,12}, {2,13}});
+        return Arrays.asList(new Object[][]{{1,12}, {2,13}});
     }
-
-    private int number;
-    private int expectation;
 
     public ParameterizedTest(int input, int  output) {
         this.number = input;

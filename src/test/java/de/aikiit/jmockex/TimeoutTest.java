@@ -16,6 +16,7 @@
  */
 package de.aikiit.jmockex;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -23,11 +24,13 @@ import org.junit.runners.model.TestTimedOutException;
 
 public class TimeoutTest {
     @Rule
-    public Timeout globalTimeout = Timeout.seconds(3);
+    public Timeout globalTimeout = Timeout.seconds(1);
 
-    // @Test(expected = TestTimedOutException.class)
+    @Ignore
+    // @Test
+    // This test will fail if enabled since it reaches the timeout configured above.
     public void willWaitForGlobalTimeout() {
-        while (true);
+        while (true) ;
     }
 
     @Test
