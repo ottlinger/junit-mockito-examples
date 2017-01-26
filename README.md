@@ -9,7 +9,7 @@ Furthermore the project is supposed to be a little guide when a typical project 
 [![Stories in
 Ready](https://badge.waffle.io/ottlinger/junit-mockito-examples.svg?label=ready&title=Ready)](http://waffle.io/ottlinger/junit-mockito-examples)
 
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/ab19f8aeeb264e0bbad1740e07a765aa)](https://www.codacy.com/app/github_25/junit-mockito-examples)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76ba48bc19ef4a44a5a436ab38525abe)](https://www.codacy.com/app/github_25/junit-mockito-examples)
 
 ## History
 ### v0.0.1 - 2016-01-29
