@@ -44,7 +44,7 @@
         <url>https://github.com/ottlinger/junit-mockito-examples</url>
     </scm>
     <properties>
-        <logger.version>2.7</logger.version>
+        <logger.version>2.10.0</logger.version>
         <junit.version>4.12</junit.version>
         <mockito.version>2.6.3</mockito.version>
         <assertj.version>3.6.1</assertj.version>
