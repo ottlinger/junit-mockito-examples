@@ -45,8 +45,8 @@
   <properties>
     <logger.version>2.10.0</logger.version>
     <junit.version>4.12</junit.version>
-    <junit.jupiter.version>5.0.2</junit.jupiter.version>
-    <junit.platform.version>1.0.2</junit.platform.version>
+    <junit.jupiter.version>5.1.0-M1</junit.jupiter.version>
+    <junit.platform.version>1.1.0-M1</junit.platform.version>
     <mockito.version>2.13.0</mockito.version>
     <assertj.version>3.8.0</assertj.version>
     <cobertura.version>2.6</cobertura.version>
@@ -60,6 +60,26 @@
     <project.build.sourceEncoding>${encoding.utf8}</project.build.sourceEncoding>
   </properties>
   <dependencies>
+    <!-- compatibility with JUnit4 IDEs -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>${junit.platform.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    <groupId>org.junit.platform</groupId>
+    <artifactId>junit-platform-runner</artifactId>
+    <version>${junit.platform.version}</version>
+    <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
+      <version>4.12.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- JUnit5 -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
