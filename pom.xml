@@ -76,6 +76,7 @@
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
+      <!-- newer versions result in test failures -->
       <version>4.12.1</version>
       <scope>test</scope>
     </dependency>
