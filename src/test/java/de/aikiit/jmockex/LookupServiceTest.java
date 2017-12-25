@@ -16,6 +16,7 @@
  */
 package de.aikiit.jmockex;
 
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.is;
@@ -29,7 +30,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import java.util.Map;
 import java.util.UUID;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 // a bit picky concerning the correct import when putting more conditions into one, but readable
 public class LookupServiceTest {
