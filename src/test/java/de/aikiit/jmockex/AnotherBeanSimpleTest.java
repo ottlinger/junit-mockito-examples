@@ -19,6 +19,7 @@ package de.aikiit.jmockex;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.experimental.theories.DataPoint;
+import org.junit.experimental.theories.DataPoints;
 import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
@@ -37,7 +38,9 @@ public class AnotherBeanSimpleTest {
 	public static final String name2 = "is";
 	@DataPoint
 	public static final String name3 = "unknown.";
-	@DataPoint
+	
+	// Collections need a different annotation in order to be injected
+	@DataPoints
 	public static final Collection<String> collectedNames = Arrays.asList("one", "two", "three");
 
 	@Theory
