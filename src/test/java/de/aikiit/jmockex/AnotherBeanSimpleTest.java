@@ -23,6 +23,9 @@ import org.junit.experimental.theories.Theories;
 import org.junit.experimental.theories.Theory;
 import org.junit.runner.RunWith;
 
+import java.util.Arrays;
+import java.util.Collection;
+
 @RunWith(Theories.class)
 public class AnotherBeanSimpleTest {
 
@@ -34,6 +37,8 @@ public class AnotherBeanSimpleTest {
 	public static final String name2 = "is";
 	@DataPoint
 	public static final String name3 = "unknown.";
+	@DataPoint
+	public static final Collection<String> collectedNames = Arrays.asList("one", "two", "three");
 
 	@Theory
 	public void verifyNameIsOkay(String aName) {
