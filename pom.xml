@@ -51,7 +51,7 @@
     <assertj.version>3.9.1</assertj.version>
     <cobertura.version>2.6</cobertura.version>
     <lombok.version>1.16.18</lombok.version>
-    <javadoc.version>2.10.3</javadoc.version>
+    <javadoc.version>3.0.0</javadoc.version>
     <surefire.version>2.20.1</surefire.version>
     <rat.version>0.12</rat.version>
     <guava.version>24.0-jre</guava.version>
