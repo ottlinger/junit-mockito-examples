@@ -38,7 +38,7 @@ public class AnotherBeanSimpleTest {
 	public static final String name2 = "is";
 	@DataPoint
 	public static final String name3 = "unknown.";
-	
+
 	// Collections need a different annotation in order to be injected
 	@DataPoints
 	public static final Collection<String> collectedNames = Arrays.asList("one", "two", "three");
