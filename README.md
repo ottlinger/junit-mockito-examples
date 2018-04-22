@@ -12,15 +12,16 @@ Ready](https://badge.waffle.io/ottlinger/junit-mockito-examples.svg?label=ready&
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/76ba48bc19ef4a44a5a436ab38525abe)](https://www.codacy.com/app/github_25/junit-mockito-examples)
 
 ## History
-### v1.1.0-SNAPSHOT - 2017
+### v1.1.0-SNAPSHOT - 2018
 
 Play around with JUnit5 ....
+Playing around with jqwik - see issue #6
 
 ### v1.0.0 - 2017-12
-Update to newer mockito and assertj versions. Minor re
+Update to newer [Mockito](https://site.mockito.org/) and [AssertJ](https://joel-costigliola.github.io/assertj/) versions. Minor refactorings.
 
 ### v0.0.2 - 2016-03
-Reformat and add more examples as an internal library.factorings
+Reformat and add more examples as an internal library.
 
 ### v0.0.1 - 2016-01-29
 First version for an internal TecTalk at work. [Abstract](abstract.md)
