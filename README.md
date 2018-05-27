@@ -14,8 +14,8 @@ Ready](https://badge.waffle.io/ottlinger/junit-mockito-examples.svg?label=ready&
 ## History
 ### v1.1.0-SNAPSHOT - 2018
 
-Play around with JUnit5 ....
-Playing around with jqwik - see issue #6
+* Play around with JUnit5 ....
+* Playing around with jqwik - see issue #6
 
 ### v1.0.0 - 2017-12
 Update to newer [Mockito](https://site.mockito.org/) and [AssertJ](https://joel-costigliola.github.io/assertj/) versions. Minor refactorings.
