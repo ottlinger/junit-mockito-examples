@@ -141,6 +141,12 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>net.jqwik</groupId>
+      <artifactId>jqwik</artifactId>
+      <version>0.8.10</version>
+      <scope>test</scope>
+    </dependency>
     <!-- http://logging.apache.org/log4j/2.x/manual/api.html -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
