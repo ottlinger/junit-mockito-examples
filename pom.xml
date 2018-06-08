@@ -49,10 +49,9 @@
     <junit.platform.version>1.1.0-M1</junit.platform.version>
     <mockito.version>2.13.0</mockito.version>
     <assertj.version>3.9.1</assertj.version>
-    <cobertura.version>2.7</cobertura.version>
     <lombok.version>1.16.18</lombok.version>
     <javadoc.version>3.0.0</javadoc.version>
-    <surefire.version>2.20.1</surefire.version>
+    <surefire.version>2.21.0</surefire.version>
     <rat.version>0.12</rat.version>
     <guava.version>25.1-jre</guava.version>
     <encoding.utf8>UTF-8</encoding.utf8>
@@ -357,23 +356,6 @@
         <artifactId>maven-jxr-plugin</artifactId>
         <version>2.5</version>
       </plugin>
-      <!-- instrumentalization for cobertura -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>cobertura-maven-plugin</artifactId>
-        <version>${cobertura.version}</version>
-        <!-- configuration> <instrumentation> <ignores> <ignore>com.example.boringcode.*</ignore>
-                            </ignores> <excludes> <exclude>com/example/dullcode/**/*.class</exclude>
-                            <exclude>com/example/**/*Test.class</exclude> </excludes> </instrumentation>
-                            </configuration -->
-        <executions>
-          <execution>
-            <goals>
-              <goal>clean</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
       <!-- 2011-03-26 generates build number for filtering, seems to fail with
                       hg as SCM provider, see http://jira.codehaus.org/browse/MOJO-1436 -->
       <plugin>
@@ -505,10 +487,10 @@
     </developer>
   </developers>
   <!-- To be able to use the latest version/release candidate -->
-  <pluginRepositories>
+  <!--pluginRepositories>
     <pluginRepository>
       <id>staged-releases</id>
       <url>https://repository.apache.org/content/repositories/orgapachecreadur-1004/</url>
     </pluginRepository>
-  </pluginRepositories>
+  </pluginRepositories-->
 </project>
