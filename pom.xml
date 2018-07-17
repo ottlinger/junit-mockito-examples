@@ -164,7 +164,7 @@
     </dependency>
   </dependencies>
   <build>
-    <defaultGoal>clean versions:display-dependency-updates enforcer:display-info install</defaultGoal>
+    <defaultGoal>clean versions:display-dependency-updates versions:display-plugin-updates enforcer:display-info install</defaultGoal>
     <extensions>
       <extension>
         <groupId>org.apache.maven.scm</groupId>
