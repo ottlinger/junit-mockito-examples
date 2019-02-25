@@ -3,7 +3,9 @@ jdk:
   - oraclejdk8
   - oraclejdk9
   - openjdk10
-  - openjdk11
+# 20190225 JDK11 doesn't like mingling with STDOUT:
+# [WARNING] Corrupted STDOUT by directly writing to native stream in forked JVM 1. 
+#  - openjdk11
   - openjdk12
 
 addons:
