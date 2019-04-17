@@ -14,7 +14,7 @@ https://github.com/users/ottlinger/projects/6
 ### v1.1.0-SNAPSHOT - 2018
 
 * Play around with JUnit5 ....
-* Playing around with jqwik - see issue #6
+* Playing around with jqwik - see issue [#6](./issues/6)
 
 ### v1.0.0 - 2017-12
 Update to newer [Mockito](https://site.mockito.org/) and [AssertJ](https://joel-costigliola.github.io/assertj/) versions. Minor refactorings.
