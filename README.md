@@ -6,8 +6,7 @@ Furthermore the project is supposed to be a little guide when a typical project 
 
 [![codecov.io](http://codecov.io/github/ottlinger/junit-mockito-examples/coverage.svg?branch=master)](http://codecov.io/github/ottlinger/junit-mockito-examples?branch=master)
 
-[![Stories in
-Ready](https://badge.waffle.io/ottlinger/junit-mockito-examples.svg?label=ready&title=Ready)](http://waffle.io/ottlinger/junit-mockito-examples)
+https://github.com/users/ottlinger/projects/6
 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/76ba48bc19ef4a44a5a436ab38525abe)](https://www.codacy.com/app/github_25/junit-mockito-examples)
 
