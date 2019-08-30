@@ -80,8 +80,7 @@ public class MockTests {
         final UUID field4 = UUID.randomUUID();
         when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
 
-        @SuppressWarnings("rawtypes")
-        final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
+        @SuppressWarnings("rawtypes") final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
             @SuppressWarnings("unchecked")
             public boolean matches(List data) {
                 if (data == null) {
@@ -103,13 +102,11 @@ public class MockTests {
                 .matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4))).isFalse();
     }
 
-    @Test(expected = FileNotFoundException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void mockEmptyMethodException() {
         UrlConnector spy = spy(UrlConnector.class);
-
-        doThrow(new FileNotFoundException()).when(spy).getConnection();
-        spy.getConnection();
+        doThrow(new IllegalArgumentException("Just for testing")).when(spy).getConnection();
+        assertThat(spy.getConnection()).isNull();
     }
-
 
 }
