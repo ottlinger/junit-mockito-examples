@@ -78,7 +78,6 @@ public class MockTests {
         final UUID field2 = UUID.randomUUID();
         final UUID field3 = UUID.randomUUID();
         final UUID field4 = UUID.randomUUID();
-        when(connection.getContent()).thenReturn(Lists.newArrayList(field1, field2, field3, field4));
 
         @SuppressWarnings("rawtypes") final ArgumentMatcher<List> matchesUUIDs = new ArgumentMatcher<List>() {
             @SuppressWarnings("unchecked")
