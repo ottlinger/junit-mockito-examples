@@ -76,7 +76,7 @@
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
       <!-- newer versions result in test failures -->
-      <version>5.5.0</version>
+      <version>5.5.1</version>
       <scope>test</scope>
     </dependency>
     <!-- JUnit5 -->
