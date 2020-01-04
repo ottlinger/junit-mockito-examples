@@ -44,7 +44,7 @@
   </scm>
   <properties>
     <logger.version>2.13.0</logger.version>
-    <junit.version>4.12</junit.version>
+    <junit.version>4.13</junit.version>
     <junit.jupiter.version>5.5.2</junit.jupiter.version>
     <junit.platform.version>1.5.2</junit.platform.version>
     <mockito.version>3.2.0</mockito.version>
