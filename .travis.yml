@@ -7,6 +7,7 @@ jdk:
 # [WARNING] Corrupted STDOUT by directly writing to native stream in forked JVM 1. 
 #  - openjdk11
   - openjdk12
+  - openjdk13
   - openjdk14
 
 addons:
