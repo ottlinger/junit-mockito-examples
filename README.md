@@ -8,8 +8,7 @@ Furthermore the project is supposed to be a little guide when a typical project 
 
 https://github.com/users/ottlinger/projects/6
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/76ba48bc19ef4a44a5a436ab38525abe)](https://www.codacy.com/app/github_25/junit-mockito-examples)
-
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b52901594704393b492ee391fdf8b1c)](https://www.codacy.com/gh/ottlinger/junit-mockito-examples/dashboard)
 ## History
 ### v1.1.0-SNAPSHOT - 2018
 
