@@ -63,7 +63,7 @@
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-runner</artifactId>
-      <version>${junit.platform.version}</version>
+      <version>1.7.1</version>
       <scope>test</scope>
     </dependency>
     <!-- JUnit5 -->
