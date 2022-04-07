@@ -17,8 +17,8 @@
 package de.aikiit.jmockex;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.contains;
-import static org.mockito.Matchers.startsWith;
+import static org.mockito.ArgumentMatchers.contains;
+import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.verify;
 import org.junit.platform.runner.JUnitPlatform;
 
