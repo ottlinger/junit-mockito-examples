@@ -49,7 +49,7 @@ jobs:
       - name: Set up Oracle JDK
         uses: oracle-actions/setup-java@v1
         with:
-          distribution: jdk.java.net
+          website: jdk.java.net
           release: ${{ matrix.java }}
           version: latest
 
