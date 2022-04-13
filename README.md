@@ -2,8 +2,6 @@
 Show usage of Mockito, JUnit and lombok when doing test-driven-development (TDD).
 Furthermore the project is supposed to be a little guide when a typical project question arises such as 'How did we do this before?'
 
-[![Build Status](https://travis-ci.org/ottlinger/junit-mockito-examples.svg?branch=master)](https://travis-ci.org/ottlinger/junit-mockito-examples)
-
 [![codecov.io](http://codecov.io/github/ottlinger/junit-mockito-examples/coverage.svg?branch=master)](http://codecov.io/github/ottlinger/junit-mockito-examples?branch=master)
 
 https://github.com/users/ottlinger/projects/6
