@@ -16,10 +16,11 @@
  */
 package de.aikiit.jmockex;
 
-import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.contains;
 import static org.mockito.ArgumentMatchers.startsWith;
 import static org.mockito.Mockito.verify;
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.platform.runner.JUnitPlatform;
 
 import java.io.PrintStream;
@@ -40,7 +41,7 @@ public class TestingSystemOutPrintlnTest {
 	public void ensureHelpIsPrinted() {
 		System.setOut(console);
 		LookupService.help();
-		assertEquals(console, System.out);
+		Assertions.assertEquals(console, System.out);
 		verify(console).println(contains("example"));
 		verify(console).println(startsWith("This is an"));
 	}
