@@ -45,7 +45,7 @@ public class AnotherBeanSimpleTest {
 
 	@Theory
 	public void verifyNameIsOkay(String aName) {
-		System.out.println(String.format("Name under test is '%s'", aName));
+		System.out.printf("Name under test is '%s'%n", aName);
 		assertEquals(aName, new AnotherBean(aName).getName());
 	}
 
