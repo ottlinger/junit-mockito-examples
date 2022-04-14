@@ -30,7 +30,7 @@ public class RemoteServiceCallerTest {
     @Mock
     private RemoteServiceCaller.RemoteService remoteService;
 
-    private RemoteServiceCaller caller = new RemoteServiceCaller();
+    private final RemoteServiceCaller caller = new RemoteServiceCaller();
 
     @Test
     public void argumentCaptor() {

@@ -28,8 +28,8 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(Parameterized.class)
 public class ParameterizedTest {
-    private int number;
-    private int expectation;
+    private final int number;
+    private final int expectation;
 
     @Parameterized.Parameters
     public static List expectations() {

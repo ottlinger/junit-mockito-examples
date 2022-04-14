@@ -20,8 +20,8 @@ import com.google.common.base.Charsets;
 import org.junit.ClassRule;
 import org.junit.Ignore;
 import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
@@ -33,8 +33,7 @@ import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Ignore("not yet working")
@@ -48,7 +47,7 @@ public class ASimpleParserTest {
 
     @BeforeEach
     public void showTestDataBaseDir() throws IOException {
-        assertNotNull(testdata);
+        Assertions.assertNotNull(testdata);
         System.out.println(
                 "Base directory is " + testdata.getRoot() + " containing " + listFilesNullSafe(testdata.getRoot()));
     }
