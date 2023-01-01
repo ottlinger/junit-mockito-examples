@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        java: [17, 18, 19]
+        java: [11, 18, 19]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
