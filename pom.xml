@@ -47,7 +47,7 @@
     <junit.version>4.13.2</junit.version>
     <junit.jupiter.version>5.8.2</junit.jupiter.version>
     <junit.platform.version>1.8.2</junit.platform.version>
-    <mockito.version>4.4.0</mockito.version>
+    <mockito.version>4.11.0</mockito.version>
     <assertj.version>3.23.1</assertj.version>
     <lombok.version>1.18.24</lombok.version>
     <javadoc.version>3.3.2</javadoc.version>
