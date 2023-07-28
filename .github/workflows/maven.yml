@@ -52,7 +52,6 @@ jobs:
         with:
           website: jdk.java.net
           release: ${{ matrix.java }}
-          version: latest
 
       - name: Build with Maven
         run: mvn -e -B -V clean enforcer:display-info install
