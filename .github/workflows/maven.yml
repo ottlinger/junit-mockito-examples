@@ -29,8 +29,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-# v18 fails due to downloadproblems 
-        java: [GA, 17, 21]
+# v18 fails as it is too old
+        java: [EA, GA]
       fail-fast: false
 
     runs-on: ${{ matrix.os }}
