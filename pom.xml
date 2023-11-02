@@ -193,6 +193,7 @@
               <exclude>webpage/**/*</exclude>
               <exclude>webpage/*</exclude>
               <exclude>**/out*/**</exclude>
+              <exclude>**/.mvn/**</exclude>
               <exclude>**/site*/**</exclude>
               <exclude>**/*.log</exclude>
               <exclude>**/.checkstyle/**/*</exclude>
