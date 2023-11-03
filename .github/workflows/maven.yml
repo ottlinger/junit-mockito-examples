@@ -54,7 +54,7 @@ jobs:
           release: ${{ matrix.java }}
 
       - name: Build with Maven
-        run: ./.mvnw -e -B -V clean install
+        run: ./mvnw -e -B -V clean install
 # disable site build due to javadoc errors with some JDK versions
 
       - name: Code coverage with codecov
