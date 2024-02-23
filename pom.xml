@@ -199,12 +199,6 @@
               <exclude>**/.checkstyle/**/*</exclude>
               <exclude>**/.gitignore</exclude>
             </excludes>
-            <!-- approve GPL3 license -->
-            <licenseFamilies>
-              <licenseFamily implementation="org.apache.rat.license.GPL3LicenseFamily">
-                <familyName>GNU General Public License, version 3</familyName>
-              </licenseFamily>
-            </licenseFamilies>
           </configuration>
         </plugin>
         <plugin>
