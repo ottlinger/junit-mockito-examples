@@ -24,8 +24,16 @@ import com.google.common.collect.Maps;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+/**
+* Example service that filters for a given filter and prints help information. 
+*/
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 public final class LookupService {
+        /**
+        * Return mapped ids,names for a given filter.
+        * @param filter filter for specific names.
+        * @return mapped results id,name for the given filter query.
+        */
 	public Map<UUID, String> getNames(String filter) {
 		final Map<UUID, String> results = Maps.newHashMap();
 		if ("magic".equals(filter)) {
@@ -35,6 +43,9 @@ public final class LookupService {
 		return results;
 	}
 
+        /**
+        * Just print out help information to the console.
+        */
 	public static void help() {
 		System.out.println("This is an example service implementation used to demonstrate testing :D");
 	}
