@@ -29,10 +29,10 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, windows-latest]
-        java: [GA]
+        java: [11, 17, 18, 21]
       fail-fast: false
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}-${{ matrix.java }}
 
     steps:
       - name: Checkout
@@ -46,12 +46,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-maven-
 
-# TODO 2023: migrate away from oracle to support 11,17,18,19 builds
-      - name: Set up Oracle JDK
-        uses: oracle-actions/setup-java@v1
+      - name: Set up JDK
+        uses: actions/setup-java@v4
         with:
-          website: jdk.java.net
-          release: ${{ matrix.java }}
+          distribution: adopt
+          java-version: ${{ matrix.java }}
+          cache: 'maven'
 
       - name: Build with Maven
         run: ./mvnw -e -B -V clean install
@@ -59,4 +59,3 @@ jobs:
 
       - name: Code coverage with codecov
         uses: codecov/codecov-action@v3
-
