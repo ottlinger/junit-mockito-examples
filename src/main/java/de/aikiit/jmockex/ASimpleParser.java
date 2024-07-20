@@ -24,15 +24,17 @@ import com.google.common.base.Charsets;
 
 /**
  * This class is just an example, no real useful implementation.
- * 
- * @author hirsch
- *
  */
 public class ASimpleParser {
 
 	private final Path path;
 	private StringBuilder contents;
 
+        /**
+        * Constructor to initialize with a given path.
+        * @param path path to work on. Must not be {@code null}.
+        * @throws IllegalArgumentException in case {@code null} is passed.
+        */ 
 	public ASimpleParser(Path path) {
 		if (path == null) {
 			throw new IllegalArgumentException("No null arguments allowed.");
@@ -42,20 +44,37 @@ public class ASimpleParser {
 		this.contents = new StringBuilder();
 	}
 
+        /**
+        * @return underlying contents.
+        */
 	public String getContents() {
 		return contents.toString();
 	}
 
+        /**
+        * Concatenated way to write/reset the underlying contents.
+        * @param input resets the underlying contents with the given contents.
+        * @return this for concatenated access.
+        */
 	public ASimpleParser write(String input) {
 		contents = new StringBuilder(input);
 		return this;
 	}
 
+        /**
+        * Concatenated way to append contents to the underlying contents.
+        * @param input appends the given input to the underlying contents.
+        * @return this for concatenated access.
+        */
 	public ASimpleParser append(String input) {
 		contents.append(input);
 		return this;
 	}
 
+        /**
+        * Flushes/Saves the contents to the underlying path.
+        * @throws IOException in case of IO errors.
+        */
 	public void flush() throws IOException {
 		Files.write(path, contents.toString().getBytes(Charsets.UTF_8));
 	}
