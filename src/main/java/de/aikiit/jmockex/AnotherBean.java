@@ -19,12 +19,18 @@ package de.aikiit.jmockex;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
+/**
+* Example bean with member and method.
+*/
 @AllArgsConstructor
 @Data
 public class AnotherBean {
 
 	private String name;
 
+        /**
+        * Example method to perform something within the bean.
+        */
 	public void perform() {
 		throw new IllegalStateException("You are not allowed to perform anything here.");
 	}
