@@ -20,10 +20,16 @@ import java.net.URLConnection;
 
 import lombok.Data;
 
+/**
+* This is an example class, that wraps an URLConnection.
+*/
 @Data
 public class UrlConnector {
 	private URLConnection connection;
 
+        /**
+        * @return the timeout of the underlying connection
+        */
 	public int getTimeout() {
 		return connection.getConnectTimeout();
 	}
