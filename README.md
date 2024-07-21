@@ -4,7 +4,7 @@ Furthermore the project is supposed to be a little guide when a typical project 
 
 [![GHA-Build status](https://github.com/ottlinger/junit-mockito-examples/actions/workflows/maven.yml/badge.svg)](https://github.com/ottlinger/junit-mockito-examples/actions)
 
-[![codecov.io](http://codecov.io/github/ottlinger/junit-mockito-examples/coverage.svg?branch=master)](http://codecov.io/github/ottlinger/junit-mockito-examples?branch=master)
+[![codecov](https://codecov.io/gh/ottlinger/junit-mockito-examples/branch/master/graph/badge.svg?token=kQTfhzeDP5)](https://codecov.io/gh/ottlinger/junit-mockito-examples)
 
 https://github.com/users/ottlinger/projects/6
 
