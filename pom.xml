@@ -45,7 +45,7 @@
   <properties>
     <logger.version>2.23.1</logger.version>
     <junit.version>4.13.2</junit.version>
-    <junit.jupiter.version>5.11.0-M2</junit.jupiter.version>
+    <junit.jupiter.version>5.11.0-RC1</junit.jupiter.version>
     <junit.platform.version>1.11.0-M2</junit.platform.version>
     <!-- newer versions are not compliant with JDK8 anymore -->
     <mockito.version>4.11.0</mockito.version>
