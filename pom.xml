@@ -276,8 +276,8 @@
         <version>3.13.0</version>
         <configuration>
           <encoding>${encoding.utf8}</encoding>
-          <source>1.8</source>
-          <target>1.8</target>
+          <source>11</source>
+          <target>11</target>
         </configuration>
       </plugin>
       <!-- generate source and javadoc.jar -->
