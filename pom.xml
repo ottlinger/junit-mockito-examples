@@ -398,7 +398,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>jdepend-maven-plugin</artifactId>
-        <version>2.0</version>
+        <version>2.1</version>
       </plugin>
       <!-- 20090805 disabled due to a bug in Cobertura leading to CI error
                         mails, http://jira.codehaus.org/browse/MCOBERTURA-73 -->
