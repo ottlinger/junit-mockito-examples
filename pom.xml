@@ -325,7 +325,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
       </plugin>
       <!-- 2011-03-26 generates build number for filtering, seems to fail with
                       hg as SCM provider, see http://jira.codehaus.org/browse/MOJO-1436 -->
@@ -368,7 +368,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jxr-plugin</artifactId>
-        <version>3.5.0</version>
+        <version>3.6.0</version>
         <configuration>
           <aggregate>true</aggregate>
           <linkJavadoc>true</linkJavadoc>
