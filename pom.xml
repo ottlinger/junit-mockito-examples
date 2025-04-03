@@ -18,7 +18,7 @@
   <description>A tutorial about TDD with JUnit and mockito.</description>
   <url>https://github.com/ottlinger/junit-mockito-examples/</url>
   <organization>
-    <name>Aiki IT</name>
+    <name>AIKI IT</name>
     <url>https://www.aiki-it.de</url>
   </organization>
   <licenses>
@@ -46,25 +46,34 @@
     <logger.version>2.24.3</logger.version>
     <junit.version>4.13.2</junit.version>
     <junit.jupiter.version>5.12.1</junit.jupiter.version>
-    <junit.platform.version>1.12.1</junit.platform.version>
     <!-- newer versions are not compliant with JDK8 anymore -->
     <mockito.version>5.16.1</mockito.version>
     <assertj.version>3.27.3</assertj.version>
     <lombok.version>1.18.36</lombok.version>
     <javadoc.version>3.11.2</javadoc.version>
-    <surefire.version>3.5.2</surefire.version>
+    <surefire.version>3.5.3</surefire.version>
     <rat.version>0.16.1</rat.version>
     <guava.version>33.4.0-jre</guava.version>
     <encoding.utf8>UTF-8</encoding.utf8>
     <project.reporting.outputEncoding>${encoding.utf8}</project.reporting.outputEncoding>
     <project.build.sourceEncoding>${encoding.utf8}</project.build.sourceEncoding>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.junit</groupId>
+        <artifactId>junit-bom</artifactId>
+        <version>5.3.0</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <!-- compatibility with JUnit4 IDEs -->
     <dependency>
       <groupId>org.junit.platform</groupId>
       <artifactId>junit-platform-runner</artifactId>
-      <version>${junit.platform.version}</version>
       <scope>test</scope>
     </dependency>
     <!-- JUnit5 -->
@@ -370,9 +379,7 @@
         <artifactId>maven-jxr-plugin</artifactId>
         <version>3.6.0</version>
         <configuration>
-          <aggregate>true</aggregate>
           <linkJavadoc>true</linkJavadoc>
-          <encoding>${encoding.utf8}</encoding>
         </configuration>
       </plugin>
       <plugin>
@@ -385,7 +392,8 @@
         <version>3.26.0</version>
         <configuration>
           <linkXRef>true</linkXRef>
-          <sourceEncoding>${encoding.utf8}</sourceEncoding>
+          <outputEncoding>${encoding.utf8}</outputEncoding>
+          <inputEncoding>${encoding.utf8}</inputEncoding>
           <minimumTokens>100</minimumTokens>
           <targetJdk>1.8</targetJdk>
           <excludes>
@@ -416,19 +424,38 @@
         <artifactId>taglist-maven-plugin</artifactId>
         <version>3.2.1</version>
         <configuration>
-          <encoding>${encoding.utf8}</encoding>
-          <tags>
-            <tag>TODO</tag>
-            <tag>todo</tag>
-            <tag>FIXME</tag>
-            <tag>fixme</tag>
-            <tag>REFACTOR</tag>
-            <tag>refactor</tag>
-            <tag>REVIEW</tag>
-            <tag>review</tag>
-            <tag>@todo</tag>
-            <tag>@deprecated</tag>
-          </tags>
+          <inputEncoding>${encoding.utf8}</inputEncoding>
+          <outputEncoding>${encoding.utf8}</outputEncoding>
+          <tagListOptions>
+            <tagClasses>
+              <tagClass>
+                <displayName>Work to be done</displayName>
+                <tags>
+                  <tag>
+                    <matchString>todo</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>fixme</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                  <tag>
+                    <matchString>review</matchString>
+                    <matchType>ignoreCase</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+              <tagClass>
+                <displayName>Deprecated stuff</displayName>
+                <tags>
+                  <tag>
+                    <matchString>@deprecated</matchString>
+                    <matchType>exact</matchType>
+                  </tag>
+                </tags>
+              </tagClass>
+            </tagClasses>
+          </tagListOptions>
         </configuration>
       </plugin>
       <plugin>
