@@ -47,7 +47,7 @@
     <junit.version>4.13.2</junit.version>
     <junit.jupiter.version>5.12.1</junit.jupiter.version>
     <!-- newer versions are not compliant with JDK8 anymore -->
-    <mockito.version>5.16.1</mockito.version>
+    <mockito.version>5.19.0</mockito.version>
     <assertj.version>3.27.3</assertj.version>
     <lombok.version>1.18.38</lombok.version>
     <javadoc.version>3.11.2</javadoc.version>
