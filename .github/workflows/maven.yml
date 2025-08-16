@@ -59,4 +59,4 @@ jobs:
 # disable site build due to javadoc errors with some JDK versions
 
       - name: Code coverage with codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v5
