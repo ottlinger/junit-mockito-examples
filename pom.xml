@@ -133,7 +133,7 @@
     <dependency>
       <groupId>net.jqwik</groupId>
       <artifactId>jqwik</artifactId>
-      <version>1.9.2</version>
+      <version>1.9.3</version>
       <scope>test</scope>
     </dependency>
     <!-- http://logging.apache.org/log4j/2.x/manual/api.html -->
