@@ -450,11 +450,11 @@
       <!-- cobertura plugin <plugin> <groupId>org.codehaus.mojo</groupId>
                         <artifactId>cobertura-maven-plugin</artifactId> <version>${cobertura.version}</version>
                         </plugin> -->
-      <plugin>
+      <!-- git problem plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changelog-plugin</artifactId>
         <version>2.3</version>
-      </plugin>
+      </plugin-->
       <!-- catch code tags -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
