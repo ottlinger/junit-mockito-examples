@@ -348,6 +348,7 @@
           <source>8</source>
         </configuration>
       </plugin>
+<!-- Disable until git deprecation problem is solved
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-changelog-plugin</artifactId>
@@ -356,7 +357,7 @@
           <dateFormat>EEE MMM dd HH:mm:ss yyyy Z</dateFormat>
           <outputEncoding>${encoding.utf8}</outputEncoding>
         </configuration>
-      </plugin>
+      </plugin-->
       <!-- generate site with correct encoding -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
