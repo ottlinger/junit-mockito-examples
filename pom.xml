@@ -45,15 +45,14 @@
   <properties>
     <logger.version>2.25.2</logger.version>
     <junit.version>4.13.2</junit.version>
-    <junit.jupiter.version>5.12.1</junit.jupiter.version>
     <!-- newer versions are not compliant with JDK8 anymore -->
     <mockito.version>5.16.1</mockito.version>
     <assertj.version>3.27.3</assertj.version>
-    <lombok.version>1.18.38</lombok.version>
-    <javadoc.version>3.11.2</javadoc.version>
-    <surefire.version>3.5.3</surefire.version>
-    <rat.version>0.16.1</rat.version>
-    <guava.version>33.4.8-jre</guava.version>
+    <lombok.version>1.18.42</lombok.version>
+    <javadoc.version>3.12.0</javadoc.version>
+    <surefire.version>3.5.4</surefire.version>
+    <rat.version>0.17</rat.version>
+    <guava.version>33.5.0-jre</guava.version>
     <encoding.utf8>UTF-8</encoding.utf8>
     <project.reporting.outputEncoding>${encoding.utf8}</project.reporting.outputEncoding>
     <project.build.sourceEncoding>${encoding.utf8}</project.build.sourceEncoding>
@@ -80,7 +79,6 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -172,7 +170,7 @@
         <plugin>
           <groupId>com.github.spotbugs</groupId>
           <artifactId>spotbugs-maven-plugin</artifactId>
-          <version>4.9.3.0</version>
+          <version>4.9.8.1</version>
           <configuration>
             <includeFilterFile>spotbugs-security-include.xml</includeFilterFile>
             <!--excludeFilterFile>spotbugs-security-exclude.xml</excludeFilterFile-->
@@ -188,7 +186,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-enforcer-plugin</artifactId>
-          <version>3.5.0</version>
+          <version>3.6.2</version>
           <executions>
             <execution>
               <id>enforce-maven</id>
@@ -218,13 +216,17 @@
             </execution>
           </executions>
           <configuration>
+            <licensesApproved>GPL3</licensesApproved>
+            <consoleOutput>true</consoleOutput>
             <ignoreErrors>false</ignoreErrors>
-            <useDefaultExcludes>true</useDefaultExcludes>
-            <useEclipseDefaultExcludes>true</useEclipseDefaultExcludes>
-            <useMavenDefaultExcludes>true</useMavenDefaultExcludes>
-            <useIdeaDefaultExcludes>true</useIdeaDefaultExcludes>
-            <addDefaultLicenseMatchers>true</addDefaultLicenseMatchers>
-            <excludes>
+            <inputExcludeStds>
+              <exclude>STANDARD_PATTERNS</exclude>
+              <exclude>STANDARD_SCMS</exclude>
+              <exclude>MAVEN</exclude>
+              <exclude>IDEA</exclude>
+            </inputExcludeStds>
+            <inputExcludeParsedScm>GIT</inputExcludeParsedScm>
+            <inputExcludes>
               <exclude>pom.xml</exclude>
               <exclude>.github/**</exclude>
               <exclude>.travis.yml</exclude>
@@ -244,7 +246,7 @@
               <exclude>**/*.log</exclude>
               <exclude>**/.checkstyle/**/*</exclude>
               <exclude>**/.gitignore</exclude>
-            </excludes>
+            </inputExcludes>
           </configuration>
         </plugin>
         <plugin>
@@ -268,6 +270,10 @@
       </plugins>
     </pluginManagement>
     <plugins>
+       <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -281,7 +287,7 @@
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.13</version>
+        <version>0.8.14</version>
         <executions>
           <execution>
             <goals>
@@ -318,7 +324,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.14.0</version>
+        <version>3.14.1</version>
         <configuration>
           <encoding>${encoding.utf8}</encoding>
           <source>11</source>
@@ -426,7 +432,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-pmd-plugin</artifactId>
-        <version>3.26.0</version>
+        <version>3.28.0</version>
         <configuration>
           <linkXRef>true</linkXRef>
           <outputEncoding>${encoding.utf8}</outputEncoding>
