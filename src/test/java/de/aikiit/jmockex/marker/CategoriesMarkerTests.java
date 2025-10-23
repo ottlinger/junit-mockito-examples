@@ -16,38 +16,27 @@
  */
 package de.aikiit.jmockex.marker;
 
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Tag;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
-import org.junit.experimental.categories.Categories;
-import org.junit.experimental.categories.Category;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
+import static org.assertj.core.api.Fail.fail;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * https://github.com/junit-team/junit/wiki/Categories
- */
 public class CategoriesMarkerTests {
 
-	@Category(UnitTestsMarker.class)
-	// since it's taken by the normal runner as well
-	@Test(expected = AssertionError.class)
-	public void justFail() {
-		fail("This should not be tested here.");
-	}
+    @Tag("unitTests")
+    // since it's taken by the normal runner as well
+    @Test
+    public void justFail() {
+        assertThrows(AssertionError.class, () -> {
+            fail("This should not be tested here.");
+        });
+    }
 
-	@Category(IntegrationTestsMarker.class)
-	@Test
-	public void thisIsAnIntegrationTest() {
-		System.out.println("This is an integrationTest :-D");
-	}
-
-	@RunWith(Categories.class)
-	@Categories.IncludeCategory(IntegrationTestsMarker.class)
-	@Categories.ExcludeCategory(UnitTestsMarker.class)
-	@Suite.SuiteClasses({ CategoriesMarkerTests.class })
-	public class CategoriesMarkerTestsSuite {
-		// what will we see :-D
-	}
+    @Tag("unitTests")
+    @Test
+    public void thisIsAnIntegrationTest() {
+        System.out.println("This is an integrationTest :-D");
+    }
 
 }

@@ -16,46 +16,39 @@
  */
 package de.aikiit.jmockex;
 
-import static org.hamcrest.Matchers.containsString;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import static org.assertj.core.api.Fail.fail;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-/**
- * https://github.com/junit-team/junit/wiki/Exception-testing
- */
 public class ExpectingExceptionsTest {
 
-	@Rule
-	public final ExpectedException thrown = ExpectedException.none();
+    @Test
+    void veryOldWay() {
+        try {
+            new AnotherBean("example").perform();
+            fail("Not expected");
+        } catch (final IllegalStateException ise) {
+            // expected
+        }
+    }
 
-	@Test(expected = IllegalStateException.class)
-	public void theOldWay() {
-		new AnotherBean("example").perform();
-	}
+    @Test
+    void newWay() throws IllegalStateException {
+        Exception expextedException = assertThrows(IllegalStateException.class, () -> {
+            new AnotherBean("example").perform();
+        });
+        assertEquals("You are not allowed to perform anything here.", expextedException.getMessage());
+    }
 
-	@Test
-	public void veryOldWay() {
-		try {
-			new AnotherBean("example").perform();
-			fail("Not expected");
-		} catch (final IllegalStateException ise) {
-			// expected
-		}
-	}
+    @Test
+    void noException() {
+        assertDoesNotThrow(() -> {
+            System.out.println("noExpection");
+        });
+    }
 
-	@Test
-	public void newWay() throws IllegalStateException {
-		thrown.expect(IllegalStateException.class);
-		thrown.expectMessage("You are not allowed to perform anything here.");
-		thrown.expectMessage(containsString("You are not allowed to "));
-		// Enable to see nice error messages
-		// thrown.expect(hasProperty("name", is("example")));
-
-		// put your code at the end
-		new AnotherBean("example").perform();
-	}
 
 }

@@ -10,9 +10,10 @@ https://github.com/users/ottlinger/projects/6
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b52901594704393b492ee391fdf8b1c)](https://www.codacy.com/gh/ottlinger/junit-mockito-examples/dashboard)
 ## History
-### v1.1.0-SNAPSHOT - 2018
+### v1.1.0-SNAPSHOT - since 2018
 
-* Play around with JUnit5 ....
+* Play around with jUnit5 .... and drop jUnit4 compeletely
+* Drop JDK8 and 11
 * Playing around with jqwik - see issue [#6](./issues/6)
 
 ### v1.0.0 - 2017-12

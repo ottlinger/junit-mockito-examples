@@ -16,41 +16,33 @@
  */
 package de.aikiit.jmockex;
 
-import static org.junit.Assert.assertEquals;
-
-import org.junit.experimental.theories.DataPoint;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.FieldSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
-@RunWith(Theories.class)
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class AnotherBeanSimpleTest {
 
-	@DataPoint
-	public static final String name = "My";
-	@DataPoint
-	public static final String name1 = "name";
-	@DataPoint
-	public static final String name2 = "is";
-	@DataPoint
-	public static final String name3 = "unknown.";
+    private static List<String> names = Arrays.asList("My", "name", "is", "unknown");
 
-	// Collections need a different annotation in order to be injected
-	@DataPoints
-	public static final Collection<String> collectedNames = Arrays.asList("one", "two", "three");
+    @ParameterizedTest
+    @MethodSource("getTestNames")
+    @FieldSource("names")
+    public void verifyNameIsOkay(String aName) {
+        System.out.printf("Name under test is '%s'%n", aName);
+        assertEquals(aName, new AnotherBean(aName).getName());
+    }
 
-	@Theory
-	public void verifyNameIsOkay(String aName) {
-		System.out.printf("Name under test is '%s'%n", aName);
-		assertEquals(aName, new AnotherBean(aName).getName());
-	}
+    private static Collection<String> getTestNames() {
+        return Arrays.asList("one", "two", "three");
+    }
 
-	@DataPoint
-	public static String getName() {
-		return "Er hieß Waldemar, weil es im Wald geschah :-)";
-	}
+    private static String getTestName() {
+        return "Er hieß Waldemar, weil es im Wald geschah :-)";
+    }
 }

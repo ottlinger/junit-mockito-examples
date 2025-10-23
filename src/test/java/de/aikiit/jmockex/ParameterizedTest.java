@@ -16,38 +16,23 @@
  */
 package de.aikiit.jmockex;
 
-import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.provider.CsvSource;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import static org.junit.Assert.assertEquals;
-
-@RunWith(Parameterized.class)
 public class ParameterizedTest {
-    private final int number;
-    private final int expectation;
-
-    @Parameterized.Parameters
-    public static List expectations() {
-        return Arrays.asList(new Object[][]{{1,12}, {2,13}});
-    }
-
-    public ParameterizedTest(int input, int  output) {
-        this.number = input;
-        this.expectation = output;
-    }
-
-    @Test
-    public void ensureCalculationIsCorrect() {
-        assertEquals(expectation, addElevenToIt(number));
-    }
-
     public static int addElevenToIt(int number) {
         return 11 + number;
     }
+
+    @org.junit.jupiter.params.ParameterizedTest
+    @CsvSource({
+            "1, 12",
+            "2, 13"
+    })
+    void ensureCalculationIsCorrect(int number, int expectation) {
+        assertEquals(expectation, addElevenToIt(number));
+    }
+
 
 }

@@ -16,21 +16,21 @@
  */
 package de.aikiit.jmockex;
 
-import java.net.URLConnection;
-
 import lombok.Data;
 
+import java.net.URLConnection;
+
 /**
-* This is an example class, that wraps an URLConnection.
-*/
+ * This is an example class, that wraps an URLConnection.
+ */
 @Data
 public class UrlConnector {
-	private URLConnection connection;
+    private URLConnection connection;
 
-        /**
-        * @return the timeout of the underlying connection
-        */
-	public int getTimeout() {
-		return connection.getConnectTimeout();
-	}
+    /**
+     * @return the timeout of the underlying connection
+     */
+    public int getTimeout() {
+        return connection.getConnectTimeout();
+    }
 }

@@ -16,42 +16,42 @@
  */
 package de.aikiit.jmockex;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.assertj.core.api.Fail.fail;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OccurrenceFinderTest {
 
-	@Test
-	public void nullArgs() {
-		try {
-			OccurrenceFinder.containsExactlyOnce(null, null);
-			fail("Should throw an exception because arguments are invalid");
-		} catch (final IllegalArgumentException iae) {
-			// intended
-		}
+    @Test
+    public void nullArgs() {
+        try {
+            OccurrenceFinder.containsExactlyOnce(null, null);
+            fail("Should throw an exception because arguments are invalid");
+        } catch (final IllegalArgumentException iae) {
+            // intended
+        }
 
-		try {
-			OccurrenceFinder.containsExactlyOnce(null, "asdasdasd");
-			fail("Should throw an exception because arguments are invalid");
-		} catch (final IllegalArgumentException iae) {
-			// intended
-		}
+        try {
+            OccurrenceFinder.containsExactlyOnce(null, "asdasdasd");
+            fail("Should throw an exception because arguments are invalid");
+        } catch (final IllegalArgumentException iae) {
+            // intended
+        }
 
-		try {
-			OccurrenceFinder.containsExactlyOnce("asdasdasd", null);
-			fail("Should throw an exception because arguments are invalid");
-		} catch (final IllegalArgumentException iae) {
-			// intended
-		}
-	}
+        try {
+            OccurrenceFinder.containsExactlyOnce("asdasdasd", null);
+            fail("Should throw an exception because arguments are invalid");
+        } catch (final IllegalArgumentException iae) {
+            // intended
+        }
+    }
 
-	@Test
-	public void validOccurrences() {
-		assertTrue(OccurrenceFinder.containsExactlyTimes(3, "abcabcab", "ab"));
-		assertTrue(OccurrenceFinder.containsExactlyTimes(3, "abcabcab", "a"));
-		assertFalse(OccurrenceFinder.containsExactlyOnce("abcabcab", "ab"));
-	}
+    @Test
+    public void validOccurrences() {
+        assertTrue(OccurrenceFinder.containsExactlyTimes(3, "abcabcab", "ab"));
+        assertTrue(OccurrenceFinder.containsExactlyTimes(3, "abcabcab", "a"));
+        assertFalse(OccurrenceFinder.containsExactlyOnce("abcabcab", "ab"));
+    }
 }

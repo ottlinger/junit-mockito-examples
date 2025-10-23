@@ -16,40 +16,43 @@
  */
 package de.aikiit.jmockex;
 
-import com.google.common.base.Charsets;
-import org.junit.ClassRule;
-import org.junit.Ignore;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.rules.TemporaryFolder;
+import org.junit.jupiter.api.io.TempDir;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.FileVisitResult;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.isA;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-@Ignore("not yet working")
+//@Disabled("not yet working")
 public class ASimpleParserTest {
 
     private static final String CONTENTS = "This is a test with German umlauts or not, äöüß!";
 
-    // HINT: needs to be public, @Rule if not static
-    @ClassRule
-    public static final TemporaryFolder testdata = new TemporaryFolder();
+    @TempDir
+    private static Path testdata;
 
     @BeforeEach
     public void showTestDataBaseDir() throws IOException {
         Assertions.assertNotNull(testdata);
         System.out.println(
-                "Base directory is " + testdata.getRoot() + " containing " + listFilesNullSafe(testdata.getRoot()));
+                "Base directory is " + testdata.getRoot() + " containing " + listFilesNullSafe(testdata.toFile()));
     }
 
     private static String listFilesNullSafe(File folder) {
@@ -71,7 +74,7 @@ public class ASimpleParserTest {
 
     public final void performWrite() throws IOException {
 
-        final Path path = testdata.newFile().toPath();
+        final Path path = testdata.toAbsolutePath();
 
         final ASimpleParser parser = new ASimpleParser(path);
         parser.write(CONTENTS).flush();
@@ -80,11 +83,11 @@ public class ASimpleParserTest {
         assertThat(readFromFile, equalTo(CONTENTS));
         System.out.println(parser);
         System.out.println("Base directory " + testdata.getRoot() + " containsExactlyOnce "
-                + listFilesNullSafe(testdata.getRoot()));
+                + listFilesNullSafe(testdata.getRoot().toFile()));
     }
 
     public void writeFluentlyAndReadContents() throws IOException {
-        final Path path = testdata.newFile().toPath();
+        final Path path = testdata.toAbsolutePath();
 
         final ASimpleParser parser = new ASimpleParser(path);
 
@@ -95,12 +98,12 @@ public class ASimpleParserTest {
     }
 
     private static List<String> read(Path path) throws IOException {
-        return Files.readAllLines(path, Charsets.UTF_8);
+        return Files.readAllLines(path, UTF_8);
     }
 
     public final void performWriteAfterAppend() throws IOException {
 
-        final Path path = testdata.newFile().toPath();
+        final Path path = testdata.toAbsolutePath();
 
         final ASimpleParser parser = new ASimpleParser(path);
         parser.append(CONTENTS).append(CONTENTS).write(CONTENTS).append(CONTENTS).write(CONTENTS).flush();
@@ -110,16 +113,16 @@ public class ASimpleParserTest {
         assertFalse(parser.toString().isEmpty());
         System.out.println(parser);
         System.out.println("Base directory " + testdata.getRoot() + " containsExactlyOnce "
-                + listFilesNullSafe(testdata.getRoot()));
+                + listFilesNullSafe(testdata.getRoot().toFile()));
     }
 
     @AfterAll
     public static void makeSureToRemoveAllFiles() throws IOException {
         // if there are open files in there or an exception takes place @Rule
         // does not delete folder properly!
-        System.out.println("Before deletion: " + listFilesNullSafe(testdata.getRoot()));
+        System.out.println("Before deletion: " + listFilesNullSafe(testdata.getRoot().toFile()));
         // JDK8 compliant and symlink-safe
-        Files.walkFileTree(Paths.get(testdata.getRoot().toURI()), new SimpleFileVisitor<Path>() {
+        Files.walkFileTree(testdata.getRoot(), new SimpleFileVisitor<Path>() {
             @Override
             public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
                 Files.delete(file);

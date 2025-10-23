@@ -17,15 +17,14 @@
 package de.aikiit.jmockex;
 
 import com.google.common.collect.Lists;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatcher;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -34,9 +33,13 @@ import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class MockTests {
     private static final int TIMEOUT = 4711;
     @Mock
@@ -101,11 +104,13 @@ public class MockTests {
                 .matches(Lists.newArrayList(field1, field2, field3, field4, field1, field2, field3, field4))).isFalse();
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void mockEmptyMethodException() {
-        UrlConnector spy = spy(UrlConnector.class);
-        doThrow(new IllegalArgumentException("Just for testing")).when(spy).getConnection();
-        assertThat(spy.getConnection()).isNull();
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            UrlConnector spy = spy(UrlConnector.class);
+            doThrow(new IllegalArgumentException("Just for testing")).when(spy).getConnection();
+            assertThat(spy.getConnection()).isNull();
+        });
     }
 
 }

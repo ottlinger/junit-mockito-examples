@@ -16,33 +16,32 @@
  */
 package de.aikiit.jmockex;
 
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.ArgumentMatchers.startsWith;
-import static org.mockito.Mockito.verify;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.platform.runner.JUnitPlatform;
-
+import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(MockitoExtension.class)
-@RunWith(JUnitPlatform.class)
 public class TestingSystemOutPrintlnTest {
+    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final PrintStream originalOut = System.out;
 
-	@Mock
-	private PrintStream console;
+    @BeforeEach
+    public void setUp() {
+        System.setOut(new PrintStream(outContent));
+    }
 
-	@Test
-	public void ensureHelpIsPrinted() {
-		System.setOut(console);
-		LookupService.help();
-		Assertions.assertEquals(console, System.out);
-		verify(console).println(contains("example"));
-		verify(console).println(startsWith("This is an"));
-	}
+    @AfterEach
+    public void tearDown() {
+        System.setOut(originalOut);
+    }
+
+    @Test
+    public void ensureHelpIsPrinted() {
+        LookupService.help();
+        assertEquals("This is an example service implementation used to demonstrate testing :D\n", outContent.toString());
+    }
 }

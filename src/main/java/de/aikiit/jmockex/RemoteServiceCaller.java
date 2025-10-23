@@ -17,32 +17,34 @@
 package de.aikiit.jmockex;
 
 /**
-* Example class that calls an underlying remote service with a parameter.
-*/
+ * Example class that calls an underlying remote service with a parameter.
+ */
 public class RemoteServiceCaller {
 
-    private RemoteService remoteService = new RemoteService();
+    private final RemoteService remoteService = new RemoteService();
 
     /**
-    * Example service class that will be mocked during tests.
-    */
+     * Example service class that will be mocked during tests.
+     */
     // not final because it can only be mocked if not final :-)
     public static class RemoteService {
         /**
-        * Converts a given value.
-        * @param value value to be converted.
-        * @return converted value
-        */
+         * Converts a given value.
+         *
+         * @param value value to be converted.
+         * @return converted value
+         */
         public String convert(long value) {
             return "alonglongway:" + value;
         }
     }
 
     /**
-    * Routes the given timestamp to the underlying service for conversion.
-    * @param timestamp timestamp to convert.
-    * @return converted timestamp
-    */
+     * Routes the given timestamp to the underlying service for conversion.
+     *
+     * @param timestamp timestamp to convert.
+     * @return converted timestamp
+     */
     public String serviceCall(long timestamp) {
         return remoteService.convert(timestamp);
     }
