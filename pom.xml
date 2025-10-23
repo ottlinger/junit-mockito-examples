@@ -45,8 +45,7 @@
   <properties>
     <logger.version>2.25.2</logger.version>
     <junit.version>4.13.2</junit.version>
-    <!-- newer versions are not compliant with JDK8 anymore -->
-    <mockito.version>5.16.1</mockito.version>
+    <mockito.version>5.20.0</mockito.version>
     <assertj.version>3.27.3</assertj.version>
     <lombok.version>1.18.42</lombok.version>
     <javadoc.version>3.12.0</javadoc.version>
@@ -327,8 +326,8 @@
         <version>3.14.1</version>
         <configuration>
           <encoding>${encoding.utf8}</encoding>
-          <source>11</source>
-          <target>11</target>
+          <source>17</source>
+          <target>17</target>
         </configuration>
       </plugin>
       <!-- generate source and javadoc.jar -->
@@ -351,7 +350,7 @@
         </executions>
         <configuration>
           <encoding>${encoding.utf8}</encoding>
-          <source>8</source>
+          <source>17</source>
         </configuration>
       </plugin>
 <!-- Disable until git deprecation problem is solved
@@ -438,7 +437,7 @@
           <outputEncoding>${encoding.utf8}</outputEncoding>
           <inputEncoding>${encoding.utf8}</inputEncoding>
           <minimumTokens>100</minimumTokens>
-          <targetJdk>1.8</targetJdk>
+          <targetJdk>17</targetJdk>
           <excludes>
             <exclude>**/generated/**/*.java</exclude>
             <exclude>**/target/clover/**/*.java</exclude>
@@ -467,8 +466,6 @@
         <artifactId>taglist-maven-plugin</artifactId>
         <version>3.2.1</version>
         <configuration>
-          <inputEncoding>${encoding.utf8}</inputEncoding>
-          <outputEncoding>${encoding.utf8}</outputEncoding>
           <tagListOptions>
             <tagClasses>
               <tagClass>
