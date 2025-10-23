@@ -42,6 +42,6 @@ public class TestingSystemOutPrintlnTest {
     @Test
     public void ensureHelpIsPrinted() {
         LookupService.help();
-        assertEquals("This is an example service implementation used to demonstrate testing :D\n", outContent.toString());
+        assertEquals("This is an example service implementation used to demonstrate testing :D" + System.lineSeparator(), outContent.toString());
     }
 }
