@@ -60,7 +60,7 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>6.0.1</version>
+        <version>6.1.0-M1</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -229,10 +229,7 @@
             <consoleOutput>true</consoleOutput>
             <ignoreErrors>false</ignoreErrors>
             <inputExcludeStds>
-              <exclude>STANDARD_PATTERNS</exclude>
-              <exclude>STANDARD_SCMS</exclude>
-              <exclude>MAVEN</exclude>
-              <exclude>IDEA</exclude>
+              <exclude>ALL</exclude>
             </inputExcludeStds>
             <inputExcludeParsedScm>GIT</inputExcludeParsedScm>
             <inputExcludes>
