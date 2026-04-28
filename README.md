@@ -6,8 +6,6 @@ Furthermore the project is supposed to be a little guide when a typical project 
 
 [![codecov](https://codecov.io/gh/ottlinger/junit-mockito-examples/branch/master/graph/badge.svg?token=kQTfhzeDP5)](https://codecov.io/gh/ottlinger/junit-mockito-examples)
 
-https://github.com/users/ottlinger/projects/6
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b52901594704393b492ee391fdf8b1c)](https://www.codacy.com/gh/ottlinger/junit-mockito-examples/dashboard)
 ## History
 ### v1.1.0-SNAPSHOT - since 2018
